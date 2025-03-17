@@ -1,14 +1,16 @@
 import React from "react";
-import { Menu, Button } from "antd";
-import { useNavigate } from "react-router-dom"; // For navigation
-import "./navbar.css"; // Import your CSS file
+import { Menu, Button, Dropdown } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contextapi/authcontext"; // Import auth context
+import "./navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  const { token, logoutUser, user } = useAuth(); // Get token, user info & logout function
 
   return (
     <div className="navbar">
-      {/* Left Side: Logo or Text */}
+      {/* Left Side: Logo */}
       <div className="navbar-logo" onClick={() => navigate("/")}>
         FX Broker
       </div>
@@ -30,17 +32,41 @@ const Navbar = () => {
         <Menu.Item key="contact" onClick={() => navigate("/contact")}>
           Contact
         </Menu.Item>
+
+        {/* My Account - Only Show if User is Logged In */}
+        {token && (
+          <Menu.Item key="myaccount" onClick={() => navigate("/myaccount")}>
+            My Account
+          </Menu.Item>
+        )}
       </Menu>
 
-      {/* Right Side: Login Button */}
+      {/* Right Side: User Profile or Login */}
       <div className="navbar-login">
-        <Button
-          type="primary"
-          className="login-button"
-          onClick={() => navigate("/login")}
-        >
-          Login
-        </Button>
+        {token ? (
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key="logout" onClick={logoutUser}>
+                  Logout
+                </Menu.Item>
+              </Menu>
+            }
+            trigger={["click"]}
+          >
+            <Button type="primary" className="user-button">
+              {user?.name || "User"}
+            </Button>
+          </Dropdown>
+        ) : (
+          <Button
+            type="primary"
+            className="login-button"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
+        )}
       </div>
     </div>
   );

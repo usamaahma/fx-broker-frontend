@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 // Create AuthContext
 const AuthContext = createContext();
@@ -6,16 +6,31 @@ const AuthContext = createContext();
 // Custom hook for using AuthContext
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null); // Store token in state
+// **Encryption helper functions**
+const encryptData = (data) => {
+  return btoa(data); // Base64 Encoding (lightweight encryption)
+};
+const decryptData = (data) => {
+  return atob(data); // Base64 Decoding
+};
 
-  // Login function
+export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(() => {
+    // Restore encrypted token from sessionStorage
+    const encryptedToken = sessionStorage.getItem("authToken");
+    return encryptedToken ? decryptData(encryptedToken) : null;
+  });
+
+  // Login function (encrypt & store)
   const loginUser = (newToken) => {
+    const encryptedToken = encryptData(newToken);
+    sessionStorage.setItem("authToken", encryptedToken);
     setToken(newToken);
   };
 
-  // Logout function
+  // Logout function (remove token)
   const logoutUser = () => {
+    sessionStorage.removeItem("authToken");
     setToken(null);
   };
 

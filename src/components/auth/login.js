@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Card, Typography, message } from "antd";
+import { Form, Input, Button, Card, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../utils/axios"; // API call
 import { useAuth } from "../contextapi/authcontext"; // Use Auth Context
+import { toast } from "react-toastify"; // Import toast
+import "react-toastify/dist/ReactToastify.css"; // Toastify CSS
 import "./login.css";
 
 const { Title, Text } = Typography;
@@ -17,10 +19,15 @@ const LoginPage = () => {
       setLoading(true);
       const response = await login.post("/login", values); // API call
       loginUser(response.data.tokens.access.token); // Save token in context
-      message.success("Login successful!");
+      toast.success("Login successful!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
       navigate("/myaccount"); // Redirect after login
     } catch (error) {
-      message.error(error.response?.data?.message || "Login failed!");
+      const errorMsg =
+        error.response?.data?.message || "Invalid email or password!";
+      toast.error(errorMsg, { position: "top-right", autoClose: 3000 }); // Show error message
     } finally {
       setLoading(false);
     }
