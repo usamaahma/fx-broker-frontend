@@ -5,24 +5,54 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useAuth } from "./components/contextapi/authcontext"; // Import AuthContext
 import LoginPage from "./components/auth/login";
+import Navbar from "./components/navbar/navbar";
 import SignupPage from "./components/auth/signup";
 import Landing from "./components/landing/landing";
+import MyAccount from "./components/myaccount/myaccount";
 
 const AppRouter = () => {
-  const isAuthenticated = false; // Change this logic based on authentication state
+  const { token } = useAuth(); // Get token from context
+  const isAuthenticated = !!token; // Convert token to boolean
 
   return (
     <Router>
+      <Navbar />
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        {/* Public Routes (Accessible by everyone) */}
+        <Route path="/" element={<Landing />} />
         <Route
-          path="/"
+          path="/login"
           element={
-            isAuthenticated ? <Landing /> : <Navigate to="/login" replace />
+            !isAuthenticated ? (
+              <LoginPage />
+            ) : (
+              <Navigate to="/myaccount" replace />
+            )
           }
         />
+        <Route
+          path="/signup"
+          element={
+            !isAuthenticated ? (
+              <SignupPage />
+            ) : (
+              <Navigate to="/myaccount" replace />
+            )
+          }
+        />
+
+        {/* Private Route: Only accessible if logged in */}
+        <Route
+          path="/myaccount"
+          element={
+            isAuthenticated ? <MyAccount /> : <Navigate to="/login" replace />
+          }
+        />
+
+        {/* Catch-all route (404 or Redirect) */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

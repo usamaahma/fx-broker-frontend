@@ -1,48 +1,62 @@
-import React from "react";
-import { Form, Input, Button, Card, Typography } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Card, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { register } from "../../utils/axios"; // API call
+import { useAuth } from "../contextapi/authcontext"; // Use Auth Context
+import "./signup.css"; // Import CSS file
 
 const { Title, Text } = Typography;
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const { loginUser } = useAuth(); // Get loginUser from context
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    // Add signup logic here
+  const onFinish = async (values) => {
+    try {
+      setLoading(true);
+      const response = await register.post("/signup", values); // API call
+      loginUser(response.data.token); // Save token in context
+      message.success("Signup successful!");
+      navigate("/"); // Redirect after signup
+    } catch (error) {
+      message.error(error.response?.data?.message || "Signup failed!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <Card className="w-96 p-6 border-2 border-black bg-white shadow-lg rounded-lg">
-        <Title level={2} className="text-center text-black">
+    <div className="signup-container">
+      <Card className="signup-card">
+        <Title level={2} className="signup-title">
           Sign Up
         </Title>
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label={<Text className="text-black">Name</Text>}
+            label={<Text className="signup-label">Name</Text>}
             name="name"
             rules={[{ required: true, message: "Please enter your name!" }]}
           >
-            <Input placeholder="Enter your name" className="border-black" />
+            <Input placeholder="Enter your name" className="signup-input" />
           </Form.Item>
 
           <Form.Item
-            label={<Text className="text-black">Email</Text>}
+            label={<Text className="signup-label">Email</Text>}
             name="email"
             rules={[{ required: true, message: "Please enter your email!" }]}
           >
-            <Input placeholder="Enter your email" className="border-black" />
+            <Input placeholder="Enter your email" className="signup-input" />
           </Form.Item>
 
           <Form.Item
-            label={<Text className="text-black">Password</Text>}
+            label={<Text className="signup-label">Password</Text>}
             name="password"
             rules={[{ required: true, message: "Please enter your password!" }]}
           >
             <Input.Password
               placeholder="Enter your password"
-              className="border-black"
+              className="signup-input"
             />
           </Form.Item>
 
@@ -50,20 +64,18 @@ const SignupPage = () => {
             <Button
               type="primary"
               htmlType="submit"
-              className="w-full bg-[#ffd700] border-black text-black hover:opacity-90"
+              className="signup-button"
+              loading={loading}
             >
               Sign Up
             </Button>
           </Form.Item>
         </Form>
 
-        <div className="text-center">
-          <Text className="text-black">
+        <div className="login-text">
+          <Text>
             Already have an account?{" "}
-            <span
-              className="text-[#ffd700] cursor-pointer hover:underline"
-              onClick={() => navigate("/login")}
-            >
+            <span className="login-link" onClick={() => navigate("/login")}>
               Login
             </span>
           </Text>

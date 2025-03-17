@@ -1,60 +1,57 @@
-import React from 'react';
-import { Carousel, Card, Row, Col, Button } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import './landing.css';
+import React from "react";
+import { Carousel, Card, Row, Col, Button } from "antd";
+import "./landing.css";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
-  // Carousel images (replace with your actual images)
+  const navigate = useNavigate(); // Hook for navigation
   const carouselImages = [
     {
-      url: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3',
-      title: 'Trade Global Markets',
-      subtitle: 'Access 1000+ instruments with tight spreads'
+      url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
+      title: "Trade Global Markets",
+      subtitle: "Access 1000+ instruments with tight spreads",
     },
     {
-      url: 'https://images.unsplash.com/photo-1613243555978-636c48dc653f',
-      title: 'Advanced Trading Platforms',
-      subtitle: 'MT4, MT5 & WebTrader available'
+      url: "https://images.unsplash.com/photo-1613243555978-636c48dc653f",
+      title: "Advanced Trading Platforms",
+      subtitle: "MT4, MT5 & WebTrader available",
     },
     {
-      url: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3',
-      title: '24/5 Professional Support',
-      subtitle: 'Multilingual customer service'
-    }
+      url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
+      title: "24/5 Professional Support",
+      subtitle: "Multilingual customer service",
+    },
   ];
 
   // Features data
   const features = [
     {
-      title: 'Leverage up to 1:1000',
-      icon: '📈',
-      content: 'Maximize your trading potential with flexible leverage options'
+      title: "Leverage up to 1:1000",
+      icon: "📈",
+      content: "Maximize your trading potential with flexible leverage options",
     },
     {
-      title: '0 Commission',
-      icon: '💸',
-      content: 'Trade major FX pairs with zero commission charges'
+      title: "0 Commission",
+      icon: "💸",
+      content: "Trade major FX pairs with zero commission charges",
     },
     {
-      title: 'Fast Execution',
-      icon: '⚡',
-      content: '99.9% of orders executed in less than 0.1 seconds'
+      title: "Fast Execution",
+      icon: "⚡",
+      content: "99.9% of orders executed in less than 0.1 seconds",
     },
     {
-      title: 'Regulated Security',
-      icon: '🛡️',
-      content: 'Fully regulated and client funds segregated'
-    }
+      title: "Regulated Security",
+      icon: "🛡️",
+      content: "Fully regulated and client funds segregated",
+    },
   ];
 
   return (
     <div className="landing-page">
       {/* Hero Carousel */}
       <section className="hero-carousel">
-        <Carousel
-          arrows
-          autoplay
-        >
+        <Carousel arrows autoplay>
           {carouselImages.map((slide, index) => (
             <div key={index}>
               <div
@@ -64,7 +61,11 @@ const Landing = () => {
                 <div className="carousel-content">
                   <h1>{slide.title}</h1>
                   <p>{slide.subtitle}</p>
-                  <Button type="primary" size="large">
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => navigate("/signup")}
+                  >
                     Start Trading Now
                   </Button>
                 </div>
@@ -100,7 +101,7 @@ const Landing = () => {
             <span>Ask</span>
             <span>Spread</span>
           </div>
-          {['EUR/USD', 'GBP/USD', 'USD/JPY', 'XAU/USD'].map((pair, index) => (
+          {["EUR/USD", "GBP/USD", "USD/JPY", "XAU/USD"].map((pair, index) => (
             <div className="table-row" key={index}>
               <span>{pair}</span>
               <span>1.0725</span>
@@ -117,8 +118,12 @@ const Landing = () => {
           <h2>Start Your Trading Journey Today!</h2>
           <p>Join over 1 million traders worldwide</p>
           <div className="cta-buttons">
-            <Button type="primary" size="large">Open Live Account</Button>
-            <Button type="primary" size="large">Try Free Demo</Button>
+            <Button type="primary" size="large">
+              Open Live Account
+            </Button>
+            <Button type="primary" size="large">
+              Try Free Demo
+            </Button>
           </div>
         </div>
       </section>
