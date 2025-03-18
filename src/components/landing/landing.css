@@ -1,281 +1,332 @@
 /* Base Styles */
 .landing-page {
-    background-color: #ffffff;
-    /* White background */
-    color: #000000;
-    /* Black text */
-    font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  /* White background */
+  color: #000000;
+  /* Black text */
+  font-family: "Arial", sans-serif;
 }
 
 /* Hero Carousel */
 .hero-carousel .carousel-slide {
-    height: 70vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .carousel-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent white background */
-    padding: 2rem;
-    border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  /* Semi-transparent white background */
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .carousel-content h1 {
-    font-size: 3rem;
-    color: #000000;
-    /* Black heading */
-    margin-bottom: 1rem;
+  font-size: 3rem;
+  color: #000000;
+  /* Black heading */
+  margin-bottom: 1rem;
 }
 
 .carousel-content p {
-    font-size: 1.5rem;
-    color: #333333;
-    /* Dark gray text */
-    margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: #333333;
+  /* Dark gray text */
+  margin-bottom: 2rem;
+}
+.main-start {
+  background-color: rgba(0, 0, 0, 0.993); /* 0.8 = 80% opacity */
+  margin: 0 auto;
+  min-height: 28rem; /* Changed from height to min-height */
+  padding: 2rem; /* Added padding for better spacing */
+  text-align: center;
 }
 
+.card-custom {
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 80%; /* Ensures consistent width */
+  height: 180px; /* Fixed height for uniform size */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-color: #ffd700; /* 0.8 = 80% opacity */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  border: white solid 1px;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+}
+
+.card-custom h3 {
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.card-custom p {
+  color: black;
+  font-weight: bolder;
+}
+.start-trading-div {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: center;
+  color: #f9f9f9;
+}
 .carousel-content .ant-btn {
-    background-color: #ffd700;
-    /* Yellow button */
-    color: #000000;
-    /* Black text */
-    border: none;
-    font-weight: bold;
+  background-color: #ffd700;
+  /* Yellow button */
+  color: #000000;
+  /* Black text */
+  border: none;
+  font-weight: bold;
 }
-
+.button-today {
+  background-color: #ffcc00;
+  color: #000000;
+  /* Black text */
+  border: none;
+  font-weight: bold;
+}
 .carousel-content .ant-btn:hover {
-    background-color: #ffcc00;
-    /* Darker yellow on hover */
+  background-color: #ffcc00;
+  /* Darker yellow on hover */
 }
 
 /* Antd Carousel Arrows */
 .ant-carousel .slick-prev,
 .ant-carousel .slick-next {
-    color: #ffd700;
-    /* Yellow arrows */
-    font-size: 24px;
-    z-index: 1;
+  color: #ffd700;
+  /* Yellow arrows */
+  font-size: 24px;
+  z-index: 1;
 }
 
 .ant-carousel .slick-prev:hover,
 .ant-carousel .slick-next:hover {
-    color: #ffcc00;
-    /* Darker yellow on hover */
+  color: #ffcc00;
+  /* Darker yellow on hover */
 }
 
 /* Features Section */
 .features-section {
-    padding: 4rem 2rem;
-    background-color: #f9f9f9;
-    /* Light gray background */
+  background-color: #f9f9f9;
+  /* Light gray background */
 }
 
 .section-title {
-    text-align: center;
-    color: #000000;
-    /* Black heading */
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+  text-align: center;
+  color: #ffd700;
+  /* Black heading */
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .section-title span {
-    color: #ffd700;
-    /* Yellow accent */
+  color: #ffd700;
+  /* Yellow accent */
 }
 
 .feature-card {
-    background: #ffffff !important;
-    /* White card background */
-    border: 1px solid #e0e0e0 !important;
-    /* Light gray border */
-    text-align: center;
-    height: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
-    transition: transform 0.3s ease;
+  background: radial-gradient(circle, #ffffff 10%, #ffd700 100%) !important;
+  /* White card background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  border-radius: 12px; /* Rounded corners */ /* Light gray border */
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    /* Lift card on hover */
+  transform: translateY(-10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .feature-card h3 {
-    color: #000000;
-    /* Black heading */
-    margin: 1rem 0;
+  color: black;
+  /* Black heading */
+  margin: 1rem 0;
 }
 
 .feature-card p {
-    color: #333333;
-    /* Dark gray text */
+  color: #333333;
+  /* Dark gray text */
 }
 
 .feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #ffd700;
-    /* Yellow icon */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+  /* Yellow icon */
 }
 
 /* Market Section */
 .market-section {
-    padding: 4rem 2rem;
-    background-color: #ffffff;
-    /* White background */
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  /* White background */
 }
 
 .market-table {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #ffffff;
-    /* White background */
-    border: 1px solid #e0e0e0;
-    /* Light gray border */
-    border-radius: 10px;
-    overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  /* White background */
+  border: 1px solid #e0e0e0;
+  /* Light gray border */
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .table-header {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 1rem;
-    background: #000000;
-    /* Black header */
-    color: #ffffff;
-    /* White text */
-    font-weight: bold;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  background: #000000;
+  /* Black header */
+  color: #ffffff;
+  /* White text */
+  font-weight: bold;
 }
 
 .table-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 1rem;
-    background: #ffffff;
-    /* White background */
-    color: #000000;
-    /* Black text */
-    margin: 0.5rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    /* Light gray border */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  background: #ffffff;
+  /* White background */
+  color: #000000;
+  /* Black text */
+  margin: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  /* Light gray border */
 }
 
 .table-row:hover {
-    background: #f9f9f9;
-    /* Light gray hover */
+  background: #f9f9f9;
+  /* Light gray hover */
 }
 
 /* CTA Section */
 .cta-section {
-    padding: 4rem 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3');
-    background-size: cover;
-    text-align: center;
-    color: #ffffff;
-    /* White text */
+  padding: 4rem 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3");
+  background-size: cover;
+  text-align: center;
+  color: #ffffff;
+  /* White text */
 }
 
 .cta-content h2 {
-    font-size: 2.5rem;
-    color: #ffd700;
-    /* Yellow heading */
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #ffd700;
+  /* Yellow heading */
+  margin-bottom: 1rem;
 }
 
 .cta-content p {
-    font-size: 1.2rem;
-    color: #ffffff;
-    /* White text */
-    margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: #ffffff;
+  /* White text */
+  margin-bottom: 2rem;
 }
 
 .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .cta-buttons .ant-btn {
-    background-color: #ffd700;
-    /* Yellow button */
-    color: #000000;
-    /* Black text */
-    border: none;
-    font-weight: bold;
+  background-color: #ffd700;
+  /* Yellow button */
+  color: #000000;
+  /* Black text */
+  border: none;
+  font-weight: bold;
 }
 
 .cta-buttons .ant-btn:hover {
-    background-color: #ffcc00;
-    /* Darker yellow on hover */
+  background-color: #ffcc00;
+  /* Darker yellow on hover */
 }
 
 /* Footer */
 .landing-footer {
-    background: #000000;
-    /* Black background */
-    padding: 2rem;
-    color: #ffffff;
-    /* White text */
+  background: #000000;
+  /* Black background */
+  padding: 2rem;
+  color: #ffffff;
+  /* White text */
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-section h4 {
-    color: #ffd700;
-    /* Yellow heading */
-    margin-bottom: 1rem;
+  color: #ffd700;
+  /* Yellow heading */
+  margin-bottom: 1rem;
 }
 
 .footer-section p {
-    margin: 0.5rem 0;
-    cursor: pointer;
-    color: #ffffff;
-    /* White text */
+  margin: 0.5rem 0;
+  cursor: pointer;
+  color: #ffffff;
+  /* White text */
 }
 
 .footer-section p:hover {
-    color: #ffd700;
-    /* Yellow on hover */
+  color: #ffd700;
+  /* Yellow on hover */
 }
 
 .footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #333333;
-    /* Dark gray border */
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #333333;
+  /* Dark gray border */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .carousel-content h1 {
-        font-size: 2rem;
-    }
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
 
-    .features-container {
-        flex-direction: column;
-    }
+  .features-container {
+    flex-direction: column;
+  }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
 
-    .market-table {
-        overflow-x: auto;
-    }
+  .market-table {
+    overflow-x: auto;
+  }
 }

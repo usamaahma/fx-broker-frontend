@@ -1,0 +1,59 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: #000;
+    min-height: 100vh;
+    color: #fff;
+  }
+  
+  .dashboard-card {
+    background-color: #222;
+    border: 1px solid #ffd700;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .dashboard-card .ant-statistic-title {
+    color: #bbb;
+  }
+  
+  .dashboard-card .ant-statistic-content {
+    color: #fff;
+  }
+  
+  .chart-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 12px;
+    border: 1px solid #ffd700;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  }
+  
+  .chart-title {
+    color: #ffd700;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .recharts-tooltip-wrapper {
+    background-color: #000 !important;
+  }
+  
+  .recharts-cartesian-axis-line {
+    stroke: #555 !important;
+  }
+  
+  .recharts-cartesian-axis-tick {
+    fill: #bbb !important;
+  }
+  
+  .recharts-legend-item-text {
+    color: #fff !important;
+  }
+  

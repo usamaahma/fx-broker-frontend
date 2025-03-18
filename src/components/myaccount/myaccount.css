@@ -1,0 +1,66 @@
+.my-account-layout {
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #000;
+}
+
+.logo {
+  height: 64px;
+  color: #ffd700;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ant-menu {
+  background-color: #000;
+}
+
+.ant-menu-item,
+.ant-menu-submenu-title {
+  color: #fff;
+  font-size: 16px;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  background-color: #ffd700 !important;
+  color: #000 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #ffd700 !important;
+  color: #000 !important;
+}
+
+.content {
+  padding: 24px;
+  background-color: #fff;
+  color: #000;
+  height: 100%;
+}
+
+.content-section {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  padding: 20px;
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.content-section:hover {
+  transform: translateY(-5px);
+}
+
+.ant-layout {
+  background-color: #f0f0f0;
+}

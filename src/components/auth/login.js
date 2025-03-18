@@ -47,7 +47,6 @@ const LoginPage = () => {
           >
             <Input placeholder="Enter your email" className="login-input" />
           </Form.Item>
-
           <Form.Item
             label={<Text className="login-label">Password</Text>}
             name="password"
@@ -58,7 +57,6 @@ const LoginPage = () => {
               className="login-input"
             />
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"

@@ -1,7 +1,12 @@
 import React from "react";
 import { Carousel, Card, Row, Col, Button } from "antd";
-import "./landing.css";
 import { useNavigate } from "react-router-dom";
+import {
+  UserAddOutlined,
+  WalletOutlined,
+  LineChartOutlined,
+} from "@ant-design/icons";
+import "./landing.css";
 
 const Landing = () => {
   const navigate = useNavigate(); // Hook for navigation
@@ -46,7 +51,25 @@ const Landing = () => {
       content: "Fully regulated and client funds segregated",
     },
   ];
-
+  const cards = [
+    {
+      title: "Open an account",
+      description: "Click Start Today and complete a few simple steps.",
+      icon: <UserAddOutlined style={{ fontSize: "30px" }} />,
+    },
+    {
+      title: "Make a deposit",
+      description:
+        "Pro Tip – Use USDT for the fastest deposits and withdrawals.",
+      icon: <WalletOutlined style={{ fontSize: "30px" }} />,
+    },
+    {
+      title: "Start Trading",
+      description:
+        "Every professional trader started somewhere. Begin your journey today!",
+      icon: <LineChartOutlined style={{ fontSize: "30px" }} />,
+    },
+  ];
   return (
     <div className="landing-page">
       {/* Hero Carousel */}
@@ -74,7 +97,33 @@ const Landing = () => {
           ))}
         </Carousel>
       </section>
-
+      <div className="main-start">
+        <div className="start-trading-div">
+          <h1>
+            How to Start Trading with <br />
+            <span style={{ color: "#ffd700" }}>Fizmo Fx Markets</span>
+          </h1>
+          <Button
+            className="button-today"
+            type="primary"
+            size="large"
+            onClick={() => navigate("/signup")}
+          >
+            Start Today
+          </Button>
+        </div>
+        <Row gutter={[16, 16]} justify="center">
+          {cards.map((card, index) => (
+            <Col key={index} xs={24} sm={12} md={8}>
+              <Card className="card-custom" hoverable>
+                <div>{card.icon}</div>
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
       {/* Features Section */}
       <section className="features-section">
         <h2 className="section-title">Why Choose FX Broker?</h2>
