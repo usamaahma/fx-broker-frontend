@@ -58,10 +58,11 @@
   justify-content: center;
   align-items: center;
   text-align: left;
-  background-color: #ffd700; /* 0.8 = 80% opacity */
-  border-radius: 10px;
+  background: radial-gradient(circle, #e2980e 10%, #ffd700 100%) !important;
+  /* White card background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  border-radius: 12px; /* Rounded corners */ /* Light gray border */
   transition: transform 0.3s ease;
-  border: white solid 1px;
 }
 
 .card-custom:hover {
@@ -124,6 +125,8 @@
 
 /* Features Section */
 .features-section {
+  width: 90%;
+  margin: 0 auto;
   background-color: #f9f9f9;
   /* Light gray background */
 }

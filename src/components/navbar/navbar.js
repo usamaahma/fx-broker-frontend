@@ -54,7 +54,7 @@ const Navbar = () => {
             }
             trigger={["click"]}
           >
-            <Button type="primary" className="user-button">
+            <Button type="primary" className="login-button">
               {user?.name || "User"}
             </Button>
           </Dropdown>
