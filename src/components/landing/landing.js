@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Card, Row, Col, Button } from "antd";
+import { Card, Row, Col, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
   UserAddOutlined,
@@ -9,26 +9,8 @@ import {
 import "./landing.css";
 
 const Landing = () => {
-  const navigate = useNavigate(); // Hook for navigation
-  const carouselImages = [
-    {
-      url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
-      title: "Trade Global Markets",
-      subtitle: "Access 1000+ instruments with tight spreads",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1613243555978-636c48dc653f",
-      title: "Advanced Trading Platforms",
-      subtitle: "MT4, MT5 & WebTrader available",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
-      title: "24/5 Professional Support",
-      subtitle: "Multilingual customer service",
-    },
-  ];
+  const navigate = useNavigate();
 
-  // Features data
   const features = [
     {
       title: "Leverage up to 1:1000",
@@ -51,6 +33,7 @@ const Landing = () => {
       content: "Fully regulated and client funds segregated",
     },
   ];
+
   const cards = [
     {
       title: "Open an account",
@@ -70,33 +53,28 @@ const Landing = () => {
       icon: <LineChartOutlined style={{ fontSize: "30px" }} />,
     },
   ];
+
   return (
     <div className="landing-page">
-      {/* Hero Carousel */}
-      <section className="hero-carousel">
-        <Carousel arrows autoplay>
-          {carouselImages.map((slide, index) => (
-            <div key={index}>
-              <div
-                className="carousel-slide"
-                style={{ backgroundImage: `url(${slide.url})` }}
-              >
-                <div className="carousel-content">
-                  <h1>{slide.title}</h1>
-                  <p>{slide.subtitle}</p>
-                  <Button
-                    type="primary"
-                    size="large"
-                    onClick={() => navigate("/signup")}
-                  >
-                    Start Trading Now
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Carousel>
+      {/* Hero Section with Video */}
+      <section className="hero-section">
+        <video autoPlay loop muted className="bg-video">
+          <source src="/bg-video.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="hero-content">
+          <h1>Trade Global Markets</h1>
+          <p>Access 1000+ instruments with tight spreads</p>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => navigate("/signup")}
+          >
+            Start Trading Now
+          </Button>
+        </div>
       </section>
+
       <div className="main-start">
         <div className="start-trading-div">
           <h1>
@@ -124,6 +102,7 @@ const Landing = () => {
           ))}
         </Row>
       </div>
+
       {/* Features Section */}
       <section className="features-section">
         <h2 className="section-title">Why Choose FX Broker?</h2>
@@ -139,46 +118,9 @@ const Landing = () => {
           ))}
         </Row>
       </section>
-
-      {/* Market Overview */}
-      <section className="market-section">
-        <h2 className="section-title">Market Overview</h2>
-        <div className="market-table">
-          <div className="table-header">
-            <span>Instrument</span>
-            <span>Bid</span>
-            <span>Ask</span>
-            <span>Spread</span>
-          </div>
-          {["EUR/USD", "GBP/USD", "USD/JPY", "XAU/USD"].map((pair, index) => (
-            <div className="table-row" key={index}>
-              <span>{pair}</span>
-              <span>1.0725</span>
-              <span>1.0726</span>
-              <span>0.1</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <h2>Start Your Trading Journey Today!</h2>
-          <p>Join over 1 million traders worldwide</p>
-          <div className="cta-buttons">
-            <Button type="primary" size="large">
-              Open Live Account
-            </Button>
-            <Button type="primary" size="large">
-              Try Free Demo
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="landing-footer">
+        <h1 style={{marginBottom:"2rem"}}>GET OUR BACK</h1>
         <div className="footer-content">
           <div className="footer-section">
             <h4>Company</h4>

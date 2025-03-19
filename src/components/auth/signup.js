@@ -15,7 +15,7 @@ const SignupPage = () => {
   const onFinish = async (values) => {
     try {
       setLoading(true);
-      const response = await register.post("/signup", values); // API call
+      const response = await register.post("/register", values); // API call
       loginUser(response.data.token); // Save token in context
       message.success("Signup successful!");
       navigate("/"); // Redirect after signup
