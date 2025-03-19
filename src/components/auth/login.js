@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../utils/axios"; // API call
 import { useAuth } from "../contextapi/authcontext"; // Use Auth Context
 import { toast } from "react-toastify"; // Import toast
-import "react-toastify/dist/ReactToastify.css"; // Toastify CSS
 import "./login.css";
 
 const { Title, Text } = Typography;
