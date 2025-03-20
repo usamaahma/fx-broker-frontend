@@ -1,58 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Card, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../utils/axios"; // API call
+import { useAuth } from "../contextapi/authcontext"; // Use Auth Context
+import { toast } from "react-toastify"; // Import toast
+import "./login.css";
 
 const { Title, Text } = Typography;
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { loginUser } = useAuth(); // Get loginUser from context
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    // Add login logic here
+  const onFinish = async (values) => {
+    try {
+      setLoading(true);
+      const response = await login.post("/login", values); // API call
+      loginUser(response.data.tokens.access.token); // Save token in context
+      toast.success("Login successful!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      navigate("/myaccount"); // Redirect after login
+    } catch (error) {
+      const errorMsg =
+        error.response?.data?.message || "Invalid email or password!";
+      toast.error(errorMsg, { position: "top-right", autoClose: 3000 }); // Show error message
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <Card className="w-96 p-6 border-2 border-black bg-white shadow-lg rounded-lg">
-        <Title level={2} className="text-center text-black">
+    <div className="login-container">
+      <Card className="login-card">
+        <Title level={2} className="login-title">
           Login
         </Title>
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label={<Text className="text-black">Email</Text>}
+            label={<Text className="login-label">Email</Text>}
             name="email"
             rules={[{ required: true, message: "Please enter your email!" }]}
           >
-            <Input placeholder="Enter your email" className="border-black" />
+            <Input placeholder="Enter your email" className="login-input" />
           </Form.Item>
-
           <Form.Item
-            label={<Text className="text-black">Password</Text>}
+            label={<Text className="login-label">Password</Text>}
             name="password"
             rules={[{ required: true, message: "Please enter your password!" }]}
           >
-            <Input.Password placeholder="Enter your password" className="border-black" />
+            <Input.Password
+              placeholder="Enter your password"
+              className="login-input"
+            />
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
-              className="w-full bg-[#ffd700] border-black text-black hover:opacity-90"
+              className="login-button"
+              loading={loading}
             >
               Login
             </Button>
           </Form.Item>
         </Form>
 
-        <div className="text-center">
-          <Text className="text-black">
-            Don't have an account? {" "}
-            <span
-              className="text-[#ffd700] cursor-pointer hover:underline"
-              onClick={() => navigate("/signup")}
-            >
+        <div className="signup-text">
+          <Text>
+            Don't have an account?{" "}
+            <span className="signup-link" onClick={() => navigate("/signup")}>
               Sign Up
             </span>
           </Text>

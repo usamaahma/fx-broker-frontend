@@ -1,0 +1,128 @@
+/* MyAccount Container */
+.myaccount-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  min-height: 100vh;
+}
+
+/* Navbar Styling */
+.myaccount-navbar {
+  background-color: #000 !important;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+}
+
+.navbar-collapse {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #000; /* Ensure visibility */
+  z-index: 1050; /* Ensure it appears above content */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* Dropdown menu black background */
+.navbar-collapse .dropdown-menu {
+  background-color: black !important;
+  z-index: 1000;
+  border: none;
+}
+
+/* Dropdown items ka text white */
+.navbar-collapse .dropdown-menu .dropdown-item {
+  color: white !important;
+}
+
+/* Dropdown item hover effect */
+.navbar-collapse .dropdown-menu .dropdown-item:hover {
+  background-color: #ffd700 !important;
+  /* Yellow hover effect */
+  color: black !important;
+}
+
+/* Logo */
+.navbar-logo {
+  color: #ffd700 !important;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Navbar Links */
+.myaccount-navbar .nav-link,
+.myaccount-navbar .nav-dropdown-toggle {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.myaccount-navbar .nav-link:hover,
+.myaccount-navbar .dropdown-item:hover {
+  color: #ffd700 !important;
+}
+
+/* Dropdown Menu */
+.nav-dropdown-menu {
+  background-color: black !important;
+}
+
+.nav-dropdown-menu .dropdown-item {
+  color: white !important;
+}
+
+.nav-dropdown-menu .dropdown-item:hover {
+  background-color: #ffd700 !important;
+  color: black !important;
+}
+
+/* Content Section */
+.content {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* User Profile Dropdown */
+#user-dropdown {
+  margin-left: 20px;
+}
+
+#user-dropdown .dropdown-toggle {
+  color: #ffd700 !important;
+  font-weight: bold;
+}
+
+#user-dropdown .dropdown-menu {
+  background-color: black !important;
+}
+
+#user-dropdown .dropdown-item {
+  color: white !important;
+}
+
+#user-dropdown .dropdown-item:hover {
+  background-color: #ffd700 !important;
+  color: black !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-logo {
+    font-size: 20px;
+  }
+
+  .myaccount-navbar .nav-link {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .content {
+    font-size: 18px;
+  }
+}
