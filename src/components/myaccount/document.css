@@ -1,0 +1,97 @@
+/* DocumentUploader.css */
+.document-uploader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+}
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red !important;
+  color: white !important;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.upload-sections {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.upload-card {
+  background: #111;
+  border: 1px solid gold;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.upload-card .ant-card-head-title {
+  color: white !important;
+}
+
+.upload-button {
+  background-color: gold !important;
+  color: black !important;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.image-preview {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.uploaded-image {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: gold !important;
+  color: black !important;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.status-container {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.status.pending {
+  color: yellow;
+}
+
+.status.verified {
+  color: limegreen;
+}

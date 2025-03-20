@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextapi/authcontext"; // Auth Context
-import Dashboard from "./dashboard"
+import Dashboard from "./dashboard";
 import "./myaccount.css";
+import DocumentUploader from "./document";
+import BankDetails from "./bank";
+import Deposit from "./deposit";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -18,13 +21,29 @@ const MyAccount = () => {
   const renderContent = () => {
     switch (selectedOption) {
       case "dashboard":
-        return <div className="content-section"><Dashboard /></div>;
+        return (
+          <div className="content-section">
+            <Dashboard />
+          </div>
+        );
       case "document-upload":
-        return <div className="content-section">📂 Document Upload</div>;
+        return (
+          <div className="content-section">
+            <DocumentUploader />
+          </div>
+        );
       case "bank-details":
-        return <div className="content-section">🏦 Bank Details</div>;
+        return (
+          <div className="content-section">
+            <BankDetails />
+          </div>
+        );
       case "deposit":
-        return <div className="content-section">💳 Deposit</div>;
+        return (
+          <div className="content-section">
+            <Deposit />
+          </div>
+        );
       case "withdraw":
         return <div className="content-section">💸 Withdraw</div>;
       case "deposit-report":
@@ -55,10 +74,14 @@ const MyAccount = () => {
 
               {/* KYC Verification */}
               <NavDropdown title="KYC Verification" id="kyc-dropdown">
-                <NavDropdown.Item onClick={() => handleMenuClick("document-upload")}>
+                <NavDropdown.Item
+                  onClick={() => handleMenuClick("document-upload")}
+                >
                   Document Upload
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleMenuClick("bank-details")}>
+                <NavDropdown.Item
+                  onClick={() => handleMenuClick("bank-details")}
+                >
                   Bank Details
                 </NavDropdown.Item>
               </NavDropdown>
@@ -75,15 +98,21 @@ const MyAccount = () => {
 
               {/* My Reports */}
               <NavDropdown title="My Reports" id="reports-dropdown">
-                <NavDropdown.Item onClick={() => handleMenuClick("deposit-report")}>
+                <NavDropdown.Item
+                  onClick={() => handleMenuClick("deposit-report")}
+                >
                   Deposit Report
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleMenuClick("withdraw-report")}>
+                <NavDropdown.Item
+                  onClick={() => handleMenuClick("withdraw-report")}
+                >
                   Withdraw Report
                 </NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link onClick={() => handleMenuClick("helpdesk")}>Helpdesk</Nav.Link>
+              <Nav.Link onClick={() => handleMenuClick("helpdesk")}>
+                Helpdesk
+              </Nav.Link>
             </Nav>
 
             {/* User Profile Dropdown / Login Button */}

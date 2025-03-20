@@ -120,7 +120,7 @@ const Landing = () => {
       </section>
       {/* Footer */}
       <footer className="landing-footer">
-        <h1 style={{marginBottom:"2rem"}}>GET OUR BACK</h1>
+        <h1 style={{ marginBottom: "2rem" }}>GET OUR BACK</h1>
         <div className="footer-content">
           <div className="footer-section">
             <h4>Company</h4>
