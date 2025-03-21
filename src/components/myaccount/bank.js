@@ -1,111 +1,133 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Card, Input, message, Spin } from "antd";
+import { Button, Card, Input, Form, message } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
-import { kyc } from "../../utils/axios"; // Import the axios instance
+import { kyc } from "../../utils/axios";
 import "./bank.css";
 
 const BankDetails = () => {
-  const [loading, setLoading] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
   const [status, setStatus] = useState("Pending");
+  const [userName, setUserName] = useState("");
+  const [bankDetails, setBankDetails] = useState(null);
 
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userId = userData?.id || userData?._id; // Agar id _id key mein hai
+  const storedUser = localStorage.getItem("user");
+  const userId = storedUser ? JSON.parse(storedUser)?.id : null;
 
-  const fetchBankDetails = async () => {
-    setLoading(true);
+  useEffect(() => {
+    if (userId) {
+      fetchKYCDetails();
+    } else {
+      console.error("User ID not found in localStorage");
+    }
+  }, [userId]);
+
+  const fetchKYCDetails = async () => {
+    if (!userId) return;
     try {
-      const response = await kyc.get(`/user/${userId}`);
-      if (response.data) {
-        setSubmittedData(response.data.bankDetails);
-        setStatus(response.data.status);
-      }
+      const response = await kyc.get(`/${userId}`);
+      const { bankDetails, status } = response.data;
+      setBankDetails(bankDetails);
+      setUserName(bankDetails?.accountHolder || "");
+      setStatus(status);
     } catch (error) {
-      message.error("Error fetching bank details.");
-    } finally {
-      setLoading(false);
+      console.error("Error fetching KYC details:", error);
     }
   };
 
-  useEffect(() => {
-    fetchBankDetails();
-  }, []);
-
-  const onFinish = async (values) => {
-    setLoading(true);
+  const handleSubmission = async (values) => {
+    if (!userId) {
+      message.error("User ID missing, unable to submit KYC.");
+      return;
+    }
     try {
-      const response = await kyc.post({ ...values, userId });
-      message.success("Bank KYC submitted successfully!");
-      fetchBankDetails(); // Fetch submitted data after successful submission
+      const payload = {
+        userId,
+        bankDetails: {
+          accountHolder: values.accountHolder,
+          bankName: values.bankName,
+          accountNumber: values.accountNumber,
+          ibanNumber: values.iban,
+        },
+      };
+
+      await kyc.post("/", payload);
+      message.success("KYC details submitted successfully!");
+      fetchKYCDetails();
     } catch (error) {
-      message.error("Error submitting KYC. Please try again.");
-    } finally {
-      setLoading(false);
+      console.error("Error submitting KYC details:", error);
+      message.error("Failed to submit KYC details.");
     }
   };
 
   return (
-    <div className="bank-container">
-      <h2 className="title">Bank KYC Verification</h2>
-      <Card title="Bank Details" bordered={false} className="bank-card">
-        <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item
-            label="Account Holder Name"
-            name="accountHolder"
-            rules={[{ required: true, message: "Please enter account holder name!" }]}
-          >
-            <Input placeholder="Enter Account Holder Name" />
-          </Form.Item>
-
-          <Form.Item
-            label="Bank Name"
-            name="bankName"
-            rules={[{ required: true, message: "Please enter bank name!" }]}
-          >
-            <Input placeholder="Enter Bank Name" />
-          </Form.Item>
-
-          <Form.Item
-            label="Account Number"
-            name="accountNumber"
-            rules={[{ required: true, message: "Please enter account number!" }]}
-          >
-            <Input placeholder="Enter Account Number" />
-          </Form.Item>
-
-          <Form.Item
-            label="IBAN Number"
-            name="iban"
-            rules={[{ required: true, message: "Please enter IBAN number!" }]}
-          >
-            <Input placeholder="Enter IBAN Number" />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} className="submit-button">
+    <div>
+      <div className="bank-container">
+        <h2 className="title">Bank KYC Verification</h2>
+        <Card title="Bank Details" bordered={false} className="bank-card">
+          <Form layout="vertical" onFinish={handleSubmission}>
+            <Form.Item
+              name="accountHolder"
+              label="Account Holder Name"
+              rules={[
+                { required: true, message: "Please enter account holder name" },
+              ]}
+            >
+              <Input
+                placeholder="Account Holder Name"
+                className="input-field"
+              />
+            </Form.Item>
+            <Form.Item
+              name="bankName"
+              label="Bank Name"
+              rules={[{ required: true, message: "Please enter bank name" }]}
+            >
+              <Input placeholder="Bank Name" className="input-field" />
+            </Form.Item>
+            <Form.Item
+              name="accountNumber"
+              label="Account Number"
+              rules={[
+                { required: true, message: "Please enter account number" },
+              ]}
+            >
+              <Input placeholder="Account Number" className="input-field" />
+            </Form.Item>
+            <Form.Item
+              name="iban"
+              label="IBAN Number"
+              rules={[{ required: true, message: "Please enter IBAN number" }]}
+            >
+              <Input placeholder="IBAN Number" className="input-field" />
+            </Form.Item>
+            <Button type="primary" htmlType="submit" className="submit-button">
               Submit
             </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-
-      {loading ? (
-        <Spin />
-      ) : submittedData ? (
-        <Card title="Submitted Bank Details" bordered={false} className="submitted-card">
-          <p><strong>Account Holder:</strong> {submittedData.accountHolder}</p>
-          <p><strong>Bank Name:</strong> {submittedData.bankName}</p>
-          <p><strong>Account Number:</strong> {submittedData.accountNumber}</p>
-          <p><strong>IBAN:</strong> {submittedData.iban}</p>
-          <p><strong>Status:</strong>
-            {status === "pending" ? (
-              <span className="status pending"><ClockCircleOutlined /> Pending</span>
-            ) : (
-              <span className="status verified"><CheckCircleOutlined /> Verified</span>
-            )}
-          </p>
+          </Form>
         </Card>
-      ) : null}
+      </div>
+      <div className="bank-container">
+        <h2 className="title">Saved Bank Details</h2>
+        {bankDetails ? (
+          <Card className="bank-card" bordered={false}>
+            <p><strong>Account Holder:</strong> {bankDetails.accountHolder}</p>
+            <p><strong>Bank Name:</strong> {bankDetails.bankName}</p>
+            <p><strong>Account Number:</strong> {bankDetails.accountNumber}</p>
+            <p><strong>IBAN Number:</strong> {bankDetails.ibanNumber}</p>
+            <p>
+              <strong>Status:</strong>
+              <span className={`status ${status.toLowerCase()}`}>
+                {status === "Pending" ? (
+                  <ClockCircleOutlined />
+                ) : (
+                  <CheckCircleOutlined />
+                )} {status}
+              </span>
+            </p>
+          </Card>
+        ) : (
+          <p className="title">No bank details available</p>
+        )}
+      </div>
     </div>
   );
 };

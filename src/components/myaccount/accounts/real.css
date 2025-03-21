@@ -1,0 +1,61 @@
+.real-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
+.real-card {
+    width: 400px;
+    padding: 20px;
+    background: black;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+}
+
+.real-heading {
+    text-align: center;
+    font-size: 22px;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+/* Change label color to white */
+.real-container .ant-form-item-label > label {
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Input styling */
+.ant-input {
+    border: 1px solid #ffd700;
+    color: white !important;  /* Ensure input text is visible */
+    background-color: black !important;
+}
+
+/* Change placeholder color */
+.ant-input::placeholder {
+    color: #bbb;
+}
+
+/* Ensure input text remains white even when focused */
+.ant-input:focus {
+    color: white !important;
+    background-color: black !important;
+}
+
+/* Submit button styling */
+.submit-btn {
+    width: 100%;
+    background: #ffd700 !important;
+    border-color: #ffd700 !important;
+    color: black;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background: black !important;
+    border-color: black !important;
+    color: #ffd700 !important;
+}

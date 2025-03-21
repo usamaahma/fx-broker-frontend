@@ -11,6 +11,9 @@ import Navbar from "./components/navbar/navbar";
 import SignupPage from "./components/auth/signup";
 import Landing from "./components/landing/landing";
 import MyAccount from "./components/myaccount/myaccount";
+import Footer from "./components/footer/footer";
+import ContactUs from "./components/landing/contact";
+import AboutUs from "./components/landing/about";
 
 const AppRouter = () => {
   const { token } = useAuth(); // Get token from context
@@ -51,9 +54,13 @@ const AppRouter = () => {
           }
         />
 
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/about-us" element={<AboutUs />} />
+
         {/* Catch-all route (404 or Redirect) */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };

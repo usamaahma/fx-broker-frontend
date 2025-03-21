@@ -5,10 +5,10 @@ import "./deposit.css";
 
 const Deposit = () => {
   const bankDetails = {
-    title: "Bank Title",
-    accountHolder: "John Doe",
-    accountNumber: "1234567890",
-    iban: "PK00ABCD1234567890",
+    // title: "Bank Title",
+    // accountHolder: "John Doe",
+    // accountNumber: "1234567890",
+    TRC20: "TD2bTuQ98tKke2jMJkNYpvPK8sX5ewNkMK",
   };
 
   const [depositSlip, setDepositSlip] = useState(null);
@@ -34,11 +34,11 @@ const Deposit = () => {
     <div className="deposit-container">
       <h2 className="title">Deposit Funds</h2>
       <Card
-        title="Bank Account Details"
+        title="Account Details"
         bordered={false}
         className="deposit-card"
       >
-        <p>
+        {/* <p>
           <strong>Bank:</strong> {bankDetails.title}
         </p>
         <p>
@@ -46,9 +46,9 @@ const Deposit = () => {
         </p>
         <p>
           <strong>Account Number:</strong> {bankDetails.accountNumber}
-        </p>
+        </p> */}
         <p>
-          <strong>IBAN:</strong> {bankDetails.iban}
+          <strong>TRC20:</strong> {bankDetails.TRC20}
         </p>
       </Card>
 
@@ -63,7 +63,7 @@ const Deposit = () => {
           <Image
             src={depositSlip}
             alt="Deposit Slip"
-            className="uploaded-image"  
+            className="uploaded-image"
           />
           <p className="deposit-details">
             <strong>Bank:</strong> {bankDetails.title} |

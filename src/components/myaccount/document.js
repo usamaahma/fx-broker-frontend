@@ -10,7 +10,6 @@ import "./document.css";
 
 const DocumentUploader = () => {
   const [poiImages, setPoiImages] = useState([]);
-  const [poaImages, setPoaImages] = useState([]);
   const [status, setStatus] = useState("Pending");
 
   const handleUpload = (file, setImages) => {
@@ -71,44 +70,6 @@ const DocumentUploader = () => {
             ))}
           </div>
         </Card>
-
-        <Card
-          title="Proof of Address (Utility Bill)"
-          bordered={false}
-          className="upload-card"
-        >
-          <Upload
-            beforeUpload={(file) => {
-              handleUpload(file, setPoaImages);
-              return false;
-            }}
-            multiple
-            showUploadList={false}
-          >
-            <Button className="upload-button">
-              <UploadOutlined /> Upload POA
-            </Button>
-          </Upload>
-          <div className="image-preview">
-            {poaImages.map((img, index) => (
-              <div key={index} className="image-wrapper">
-                <Image
-                  src={img}
-                  width={100}
-                  height={100}
-                  className="uploaded-image"
-                />
-                <Button
-                  type="text"
-                  icon={<DeleteOutlined />}
-                  className="delete-button"
-                  onClick={() => handleDelete(index, setPoaImages)}
-                />
-              </div>
-            ))}
-          </div>
-        </Card>
-
         <Button className="submit-button" onClick={handleSubmission}>
           Submit
         </Button>

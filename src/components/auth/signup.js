@@ -52,11 +52,7 @@ const SignupPage = () => {
 
   const onFinish = async (values) => {
     console.log("clicked");
-    if (values.age < 18) {
-      toast.error("Sorry, your age is below 18.");
-      return;
-    }
-
+    
     try {
       setLoading(true);
       const response = await register.post("/register", { ...values, country: selectedCountry });
@@ -90,10 +86,7 @@ const SignupPage = () => {
             <Input.Password placeholder="Enter your password" className="signup-input" />
           </Form.Item>
 
-          {/* Age */}
-          <Form.Item label={<Text className="signup-label">Age</Text>} name="age" rules={[{ required: true, message: "Please enter your age!" }]}>
-            <Input type="number" placeholder="Enter your age" className="signup-input" />
-          </Form.Item>
+         
 
           {/* Country Dropdown */}
           <Form.Item label={<Text className="signup-label">Country</Text>} name="country" rules={[{ required: true, message: "Please select your country!" }]}>

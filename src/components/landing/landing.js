@@ -79,7 +79,7 @@ const Landing = () => {
         <div className="start-trading-div">
           <h1>
             How to Start Trading with <br />
-            <span style={{ color: "#ffd700" }}>Fizmo Fx Markets</span>
+            <span style={{ color: "#ffd700" }}>Capital Fx Markets</span>
           </h1>
           <Button
             className="button-today"
@@ -118,33 +118,7 @@ const Landing = () => {
           ))}
         </Row>
       </section>
-      {/* Footer */}
-      <footer className="landing-footer">
-        <h1 style={{ marginBottom: "2rem" }}>GET OUR BACK</h1>
-        <div className="footer-content">
-          <div className="footer-section">
-            <h4>Company</h4>
-            <p>About Us</p>
-            <p>Regulations</p>
-            <p>Careers</p>
-          </div>
-          <div className="footer-section">
-            <h4>Trading</h4>
-            <p>Platforms</p>
-            <p>Instruments</p>
-            <p>Education</p>
-          </div>
-          <div className="footer-section">
-            <h4>Support</h4>
-            <p>Contact Us</p>
-            <p>FAQ</p>
-            <p>Documentation</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2023 Capital FX. All rights reserved</p>
-        </div>
-      </footer>
+
     </div>
   );
 };

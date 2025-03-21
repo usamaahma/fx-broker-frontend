@@ -31,4 +31,4 @@ register.interceptors.request.use(requestInterceptor, errorInterceptor);
 login.interceptors.request.use(requestInterceptor, errorInterceptor);
 kyc.interceptors.request.use(requestInterceptor, errorInterceptor);
 
-export { register, login,kyc };
+export { register, login, kyc };
