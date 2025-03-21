@@ -7,7 +7,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
 }
-
+.deposit-card p {
+  display: flex;
+  justify-content: space-between;
+}
 .title {
   text-align: center;
   color: gold;

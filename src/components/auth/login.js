@@ -17,6 +17,8 @@ const LoginPage = () => {
     try {
       setLoading(true);
       const response = await login.post("/login", values); // API call
+      const user = response.data.user;
+      localStorage.setItem("user", JSON.stringify(user));
       loginUser(response.data.tokens.access.token); // Save token in context
       toast.success("Login successful!", {
         position: "top-right",

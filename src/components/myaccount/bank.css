@@ -1,3 +1,4 @@
+/* 🌟 Main Container */
 .bank-container {
   max-width: 500px;
   margin: auto;
@@ -8,68 +9,151 @@
   box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
 }
 
+/* 🔹 Title & Headings Styling */
 .title,
-.bank-card .ant-card-head-title {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
-  color: white !important; /* Title white */
+  font-size: 24px;
+  color: white !important;
   margin-bottom: 20px;
 }
-
-.bank-card {
-  background: #1e1e1e !important;
-  border: 1px solid gold !important;
+.bank-info p {
+  display: flex;
+  justify-content: space-between;
+}
+strong {
+  color: white !important;
+}
+.bank-info-card .ant-card-body {
+  text-align: left !important;
+}
+/* 🔹 Form & Card Styling */
+.bank-card,
+.bank-info-card {
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: #1e1e1e;
+  padding: 20px;
+  margin-top: 2rem;
+  border: 1px solid gold;
 }
 
+/* 🔹 Input Fields */
 .input-field {
   width: 100%;
   margin-bottom: 10px;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid gold;
   border-radius: 5px;
   background: #2a2a2a;
-  color: white; /* Default text color white */
-  transition: color 0.3s, background 0.3s;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .input-field::placeholder {
-  color: white !important; /* Placeholder white */
+  color: white;
   opacity: 0.7;
 }
 
 .input-field:focus {
-  color: black !important; /* Text color black on focus */
-  background: #2a2a2a !important;
+  color: black;
+  background: white;
 }
 
-.upload-button {
-  width: 100%;
-  background: gold !important;
-  border: none !important;
-  color: black !important;
-}
-
+/* 🔹 Buttons */
 .submit-button {
   width: 100%;
-  margin-top: 15px;
-  background: white !important;
-  color: black !important;
-  border: 1px solid gold !important;
+  background: gold;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
-.status-container {
-  text-align: center;
-  margin-top: 15px;
+.submit-button:hover {
+  background: white;
+  color: black;
+  border: 1px solid gold;
 }
 
+/* 🔹 Bank Details Styling */
+.bank-info-card {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.bank-info p {
+  font-size: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}
+
+/* 🔹 Status Colors */
 .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.pending {
+.status.pending {
   color: orange;
 }
 
-.verified {
+.status.verified {
   color: green;
+}
+
+/* 🌟 Table Styling */
+.bank-table-card {
+  margin-top: 2rem;
+}
+
+.bank-table-card .ant-table-thead > tr > th {
+  background: black;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bank-table-card .ant-table-tbody > tr > td {
+  background: white;
+  color: black;
+}
+
+/* 🌟 Mobile Responsive */
+@media (max-width: 768px) {
+  .bank-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .bank-card,
+  .bank-info-card {
+    padding: 15px;
+    margin-top: 1rem;
+  }
+
+  /* Table scrollable on small screens */
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .ant-table {
+    width: 1000px; /* Scrollable width */
+  }
+
+  .submit-button {
+    font-size: 16px;
+    padding: 10px;
+  }
 }

@@ -63,7 +63,7 @@ const Deposit = () => {
           <Image
             src={depositSlip}
             alt="Deposit Slip"
-            className="uploaded-image"  
+            className="uploaded-image"
           />
           <p className="deposit-details">
             <strong>Bank:</strong> {bankDetails.title} |

@@ -28,15 +28,24 @@ const Navbar = () => {
     !shouldHideNavbar && ( // Agar "My Account" page hai toh navbar render nahi hoga
       <div className="navbar">
         <div className="navbar-logo" onClick={() => navigate("/")}>
-          FX Broker
+          CAPITAL FX
         </div>
-
         <Menu mode="horizontal" className="navbar-menu">
-          <Menu.Item key="home" onClick={() => navigate("/")}>Home</Menu.Item>
-          <Menu.Item key="markets" onClick={() => navigate("/markets")}>Markets</Menu.Item>
-          <Menu.Item key="pricing" onClick={() => navigate("/pricing")}>Pricing</Menu.Item>
-          <Menu.Item key="about" onClick={() => navigate("/about")}>About Us</Menu.Item>
-          <Menu.Item key="contact" onClick={() => navigate("/contact")}>Contact</Menu.Item>
+          <Menu.Item key="home" onClick={() => navigate("/")}>
+            Home
+          </Menu.Item>
+          <Menu.Item key="markets" onClick={() => navigate("/markets")}>
+            Markets
+          </Menu.Item>
+          <Menu.Item key="pricing" onClick={() => navigate("/pricing")}>
+            Pricing
+          </Menu.Item>
+          <Menu.Item key="about" onClick={() => navigate("/about")}>
+            About Us
+          </Menu.Item>
+          <Menu.Item key="contact" onClick={() => navigate("/contact")}>
+            Contact
+          </Menu.Item>
 
           {token && (
             <Menu.Item key="myaccount" onClick={() => navigate("/myaccount")}>
@@ -53,7 +62,11 @@ const Navbar = () => {
               </Button>
             </Dropdown>
           ) : (
-            <Button type="primary" className="login-button" onClick={() => navigate("/login")}>
+            <Button
+              type="primary"
+              className="login-button"
+              onClick={() => navigate("/login")}
+            >
               Login
             </Button>
           )}
