@@ -63,7 +63,7 @@ const MyAccount = () => {
       <Navbar expand="lg" className="myaccount-navbar">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
-            FX Broker
+            Capital FX
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

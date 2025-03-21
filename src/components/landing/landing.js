@@ -105,7 +105,7 @@ const Landing = () => {
 
       {/* Features Section */}
       <section className="features-section">
-        <h2 className="section-title">Why Choose FX Broker?</h2>
+        <h2 className="section-title">Why Choose Capital FX?</h2>
         <Row gutter={[24, 24]} className="features-container">
           {features.map((feature, index) => (
             <Col xs={24} sm={12} md={6} key={index}>
@@ -142,7 +142,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2023 FX Broker. All rights reserved</p>
+          <p>© 2023 Capital FX. All rights reserved</p>
         </div>
       </footer>
     </div>
