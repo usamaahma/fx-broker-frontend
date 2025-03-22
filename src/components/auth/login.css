@@ -1,22 +1,26 @@
-/* LoginPage.css */
+/* 🌟 Main Container */
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: black;
+  background: black;
 }
 
+/* 🔹 Card Styling */
 .login-card {
-  width: 400px;
+  max-width: 500px;
+  width: 100%;
   padding: 30px;
-  border: 2px solid black;
-  background-color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background: black;
+  color: white !important;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.5);
+  border: 1px solid gold;
   text-align: center;
 }
 
+/* 🔹 Title Styling */
 .login-title {
   color: #ffd700 !important;
   font-size: 24px !important;
@@ -24,38 +28,58 @@
   margin-bottom: 20px !important;
 }
 
+/* 🔹 Labels */
 .login-label {
-  color: black;
-  font-weight: 600;
+  color: white !important;
+  font-weight: bold;
 }
 
+/* 🔹 Input Fields */
 .login-input {
   width: 100%;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid gold;
   border-radius: 5px;
-  margin-top: 5px;
+  background: black !important;
+  color: white !important;
+  transition: all 0.3s ease;
 }
 
+/* Placeholder */
+.login-input::placeholder {
+  color: #bbb;
+}
+
+/* Focus Effect */
+.login-input:focus {
+  color: white !important;
+  background: black !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* 🔹 Button */
 .login-button {
   width: 100%;
-  background-color: #ffd700;
+  background: #ffd700 !important;
+  border-color: #ffd700 !important;
   color: black;
   font-weight: bold;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
+  padding: 12px;
+  border-radius: 6px;
   transition: 0.3s;
 }
 
 .login-button:hover {
-  background-color: #e6c200;
+  background: black !important;
+  border-color: #ffd700 !important;
+  color: #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
+/* 🔹 Sign Up Link */
 .signup-text {
-  color: black;
+  color: white;
   margin-top: 15px;
 }
 
@@ -68,4 +92,14 @@
 
 .signup-link:hover {
   text-decoration: underline;
+}
+.signup-text text{
+color: #bbb !important;
+}
+/* 🌟 Mobile Responsive */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 20px;
+    max-width: 100%;
+  }
 }

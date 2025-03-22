@@ -1,83 +1,84 @@
 /* Navbar Container */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000;
-    /* Black background */
-    padding: 0 20px;
-    height: 60px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  /* Black background */
+  padding: 0 20px;
+  height: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 /* Hide Navbar Without Leaving Space */
 .navbar.hide {
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    padding: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
 /* Logo or Text on the Left */
 .navbar-logo {
-    color: #ffd700;
-    /* Yellow color */
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
+  color: #ffd700;
+  /* Yellow color */
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* Center Navigation Menu */
 .navbar-menu {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    border-bottom: none;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  border-bottom: none;
 }
 
 .navbar-menu .ant-menu-item {
-    color: #fff;
-    /* White text */
-    font-size: 16px;
-    margin: 0 15px;
+  color: #fff;
+  /* White text */
+  font-size: 16px;
+  margin: 0 15px;
 }
 
 .navbar-menu .ant-menu-item:hover {
-    color: white !important;
+  color: white !important;
 }
 
 /* Login Button on the Right */
 .navbar-login .login-button {
-    background-color: #ffd700;
-    /* Yellow background */
-    color: #000;
-    /* Black text */
-    border: none;
-    font-weight: bold;
-    padding: 0 20px;
-    height: 36px;
+  background-color: #ffd700;
+  /* Yellow background */
+  color: #000;
+  /* Black text */
+  border: none;
+  font-weight: bold;
+  padding: 0 20px;
+  height: 36px;
 }
 
 .navbar-login .login-button:hover {
-    background-color: #ffcc00 !important;
-    /* Slightly darker yellow on hover */
+  background-color: #ffcc00 !important;
+  color: white !important;
+  /* Slightly darker yellow on hover */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .navbar-menu {
-        display: none;
-        /* Hide menu on small screens */
-    }
+  .navbar-menu {
+    display: none;
+    /* Hide menu on small screens */
+  }
 
-    .navbar-logo {
-        font-size: 20px;
-    }
+  .navbar-logo {
+    font-size: 20px;
+  }
 
-    .navbar-login .login-button {
-        padding: 0 15px;
-        height: 32px;
-    }
+  .navbar-login .login-button {
+    padding: 0 15px;
+    height: 32px;
+  }
 }

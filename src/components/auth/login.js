@@ -71,8 +71,8 @@ const LoginPage = () => {
         </Form>
 
         <div className="signup-text">
-          <Text>
-            Don't have an account?{" "}
+          <Text >
+           <p style={{color:"white"}}>Don't have an account?{" "}</p> 
             <span className="signup-link" onClick={() => navigate("/signup")}>
               Sign Up
             </span>
