@@ -83,3 +83,10 @@
 .pending {
   color: orange;
 }
+
+@media only screen and (max-width: 720px) {
+  .accounttrc {
+    display: grid !important;
+    font-size: x-small;
+  }
+}

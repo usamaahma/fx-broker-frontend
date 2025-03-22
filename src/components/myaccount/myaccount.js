@@ -13,10 +13,12 @@ import Real from "./accounts/real";
 const MyAccount = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("dashboard");
-  const { user, logoutUser, token } = useAuth(); // Added 'token' for authentication check
+  const { user, logoutUser, token } = useAuth();
+  const [expanded, setExpanded] = useState(false); // Track navbar state
 
   const handleMenuClick = (option) => {
     setSelectedOption(option);
+    setExpanded(false); // Close navbar on mobile
   };
 
   const renderContent = () => {
@@ -38,9 +40,17 @@ const MyAccount = () => {
       case "helpdesk":
         return <div>❓ Helpdesk</div>;
       case "demo-account":
-        return <div><Demo /></div>;
+        return (
+          <div>
+            <Demo />
+          </div>
+        );
       case "real-account":
-        return <div><Real /></div>;
+        return (
+          <div>
+            <Real />
+          </div>
+        );
       case "accounts-detail":
         return <div>📋 All Accounts Detail</div>;
       default:
@@ -50,12 +60,15 @@ const MyAccount = () => {
 
   return (
     <div className="myaccount-container">
-      <Navbar expand="lg" className="myaccount-navbar">
+      <Navbar expand="lg" expanded={expanded} className="myaccount-navbar">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
             Capital FX
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            onClick={() => setExpanded(expanded ? false : true)}
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto">
               <Nav.Link onClick={() => handleMenuClick("dashboard")}>
@@ -123,7 +136,14 @@ const MyAccount = () => {
 
             {token ? (
               <NavDropdown title={user?.name || "User"} id="user-dropdown">
-                <NavDropdown.Item onClick={logoutUser}>Logout</NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => {
+                    logoutUser();
+                    setExpanded(false); // Close on logout
+                  }}
+                >
+                  Logout
+                </NavDropdown.Item>
               </NavDropdown>
             ) : (
               <Button onClick={() => navigate("/login")}>Login</Button>

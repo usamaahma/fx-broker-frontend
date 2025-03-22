@@ -47,8 +47,9 @@ const Deposit = () => {
         <p>
           <strong>Account Number:</strong> {bankDetails.accountNumber}
         </p> */}
-        <p>
-          <strong>TRC20:</strong> {bankDetails.TRC20}
+        <p className="accounttrc">
+          <strong>TRC20:</strong>
+           {bankDetails.TRC20}
         </p>
       </Card>
 
