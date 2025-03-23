@@ -63,7 +63,7 @@ const MyAccount = () => {
       <Navbar expand="lg" expanded={expanded} className="myaccount-navbar">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
-            Capital FX
+          Aljadeed Capitals FX
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"

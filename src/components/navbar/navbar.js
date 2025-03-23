@@ -28,7 +28,7 @@ const Navbar = () => {
     !shouldHideNavbar && ( // Agar "My Account" page hai toh navbar render nahi hoga
       <div className="navbar">
         <div className="navbar-logo" onClick={() => navigate("/")}>
-          Capital FX
+          Aljadeed Capitals FX
         </div>
         <Menu mode="horizontal" className="navbar-menu">
           <Menu.Item key="home" onClick={() => navigate("/")}>

@@ -6,7 +6,7 @@ function AboutUs() {
     <section className="about-container">
       <h1 className="about-title">About Us</h1>
       <p className="about-description">
-        We at <span className="highlight">Capital FX</span> serve individual and institutional financial specialists, providing sophisticated tools and services that meet our customers' needs, such as <span className="highlight">Vertex FX</span>.
+        We at <span className="highlight">Aljadeed Capitals FX</span> serve individual and institutional financial specialists, providing sophisticated tools and services that meet our customers' needs, such as <span className="highlight">Vertex FX</span>.
       </p>
 
       <div className="about-section">
@@ -18,7 +18,7 @@ function AboutUs() {
 
       <div className="quote">
         <p>
-          “Presently, <span className="highlight">Smart Exchange Trading</span> is known as the number 1 & most viewed forex-related site all over the world.”
+          “Presently, <span className="highlight">Al Jadeed Capitals Fx</span> is known as the number 1 & most viewed forex-related site all over the world.”
         </p>
       </div>
 

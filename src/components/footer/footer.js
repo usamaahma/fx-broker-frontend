@@ -12,7 +12,6 @@ function Footer() {
                     <p>
                         <Link to="/about-us" className="footer-link">About Us</Link>
                     </p>
-                    <p>Regulations</p>
                     <p>Careers</p>
                 </div>
                 <div className="footer-section">
@@ -42,7 +41,7 @@ function Footer() {
                 </p>
             </div>
             <div className="footer-bottom">
-                <p>© 2023 Capital FX. All rights reserved.</p>
+                <p>© 2023 Aljadeed Capitals FX. All rights reserved.</p>
             </div>
         </footer>
     );

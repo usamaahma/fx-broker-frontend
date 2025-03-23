@@ -5,6 +5,7 @@ import {
   UserAddOutlined,
   WalletOutlined,
   LineChartOutlined,
+  ClockCircleOutlined,
 } from "@ant-design/icons";
 import "./landing.css";
 
@@ -13,24 +14,24 @@ const Landing = () => {
 
   const features = [
     {
-      title: "Leverage up to 1:1000",
+      title: "1:1000",
       icon: "📈",
-      content: "Maximize your trading potential with flexible leverage options",
+      content: "Maximize trading potential with flexible leverage options.",
     },
     {
-      title: "0 Commission",
-      icon: "💸",
-      content: "Trade major FX pairs with zero commission charges",
+      title: "Zero Delay",
+      icon: <ClockCircleOutlined />,
+      content: "Trade market Pairs with zero delay",
     },
     {
       title: "Fast Execution",
       icon: "⚡",
-      content: "99.9% of orders executed in less than 0.1 seconds",
+      content: "orders executed instantly with ultra-low latency",
     },
     {
-      title: "Regulated Security",
+      title: "Security",
       icon: "🛡️",
-      content: "Fully regulated and client funds segregated",
+      content: "Fully secure and protected with advanced encryption",
     },
   ];
 
@@ -64,7 +65,7 @@ const Landing = () => {
         </video>
         <div className="hero-content">
           <h1>Trade Global Markets</h1>
-          <p>Access 1000+ instruments with tight spreads</p>
+          <p>Access 1000+ instruments with Fast Execution</p>
           <Button
             type="primary"
             size="large"
@@ -78,8 +79,8 @@ const Landing = () => {
       <div className="main-start">
         <div className="start-trading-div">
           <h1>
-            How to Start Trading with <br />
-            <span style={{ color: "#ffd700" }}>Capital Fx Markets</span>
+            How to start trading in <br />
+            <span style={{ color: "#ffd700" }}>Financial markets</span>
           </h1>
           <Button
             className="button-today"
@@ -105,7 +106,7 @@ const Landing = () => {
 
       {/* Features Section */}
       <section className="features-section">
-        <h2 className="section-title">Why Choose Capital FX?</h2>
+        <h2 className="section-title">Why Choose US?</h2>
         <Row gutter={[24, 24]} className="features-container">
           {features.map((feature, index) => (
             <Col xs={24} sm={12} md={6} key={index}>

@@ -12,12 +12,12 @@ function ContactUs() {
       <div className="contact-details">
         <div className="contact-item">
           <MailOutlined className="contact-icon" />
-          <p>Email: support@capitalfx.com</p>
+          <p>Email: helpaljadeedcapitals@gmail.com</p>
         </div>
-        <div className="contact-item">
+        {/* <div className="contact-item">
           <PhoneOutlined className="contact-icon" />
           <p>Phone: +1 (234) 567-890</p>
-        </div>
+        </div> */}
         {/* <div className="contact-item">
           <EnvironmentOutlined className="contact-icon" />
           <p>Location: 123 Wall Street, New York, NY</p>

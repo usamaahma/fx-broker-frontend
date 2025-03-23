@@ -34,7 +34,7 @@ const Deposit = () => {
     <div className="deposit-container">
       <h2 className="title">Deposit Funds</h2>
       <Card
-        title="Account Details"
+        title="Binance Account Details"
         bordered={false}
         className="deposit-card"
       >
@@ -49,7 +49,7 @@ const Deposit = () => {
         </p> */}
         <p className="accounttrc">
           <strong>TRC20:</strong>
-           {bankDetails.TRC20}
+          {bankDetails.TRC20}
         </p>
       </Card>
 
