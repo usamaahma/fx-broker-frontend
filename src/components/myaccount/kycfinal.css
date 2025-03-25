@@ -1,0 +1,142 @@
+.kyc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #111, #000);
+  color: #fff;
+  padding: 20px;
+}
+
+.kyc-card,
+.kyc-preview-card {
+  width: 100%;
+  max-width: 500px;
+  background: #111;
+  color: #fff;
+  border: 1px solid gold;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.kyc-card:hover,
+.kyc-preview-card:hover {
+  transform: scale(1.02);
+}
+
+.upload-button {
+  width: 100%;
+  background: gold !important;
+  color: black !important;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.upload-button:hover {
+  background: black !important;
+  border-color: #ffd700 !important;
+  color: #ffd700 !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.image-preview {
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.uploaded-image {
+  border-radius: 8px;
+  border: 2px solid gold;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+.uploaded-image:hover {
+  transform: scale(1.1);
+}
+
+.delete-button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red !important;
+  color: white !important;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+.submit-button {
+  background: gold !important;
+  color: black !important;
+  font-weight: bold;
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.submit-button:hover {
+  background: black !important;
+  border-color: #ffd700 !important;
+  color: #ffd700 !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.status-container {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.status.pending {
+  color: yellow !important;
+}
+
+.status.verified {
+  color: limegreen;
+}
+
+.kyc-form .ant-form-item-label label {
+  color: white !important;
+  font-weight: bold;
+}
+
+.kyc-form .ant-input,
+.kyc-form .ant-input::placeholder {
+  color: white !important;
+}
+
+.kyc-form .ant-input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+
+@media (max-width: 768px) {
+  .kyc-card,
+  .kyc-preview-card {
+    max-width: 90%;
+    padding: 15px;
+  }
+}

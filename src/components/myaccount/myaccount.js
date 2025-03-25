@@ -9,6 +9,7 @@ import BankDetails from "./bank";
 import Deposit from "./deposit";
 import Demo from "./accounts/demo";
 import Real from "./accounts/real";
+import KycFinal from "./kycfinal";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -25,10 +26,8 @@ const MyAccount = () => {
     switch (selectedOption) {
       case "dashboard":
         return <Dashboard />;
-      case "document-upload":
-        return <DocumentUploader />;
-      case "bank-details":
-        return <BankDetails />;
+      case "kyc":
+        return <KycFinal />;
       case "deposit":
         return <Deposit />;
       case "withdraw":
@@ -63,7 +62,7 @@ const MyAccount = () => {
       <Navbar expand="lg" expanded={expanded} className="myaccount-navbar">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
-          Aljadeed Capitals FX
+            Aljadeed Capitals FX
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
@@ -75,16 +74,13 @@ const MyAccount = () => {
                 Dashboard
               </Nav.Link>
 
-              <NavDropdown title="KYC Verification" id="kyc-dropdown">
-                <NavDropdown.Item
-                  onClick={() => handleMenuClick("document-upload")}
-                >
-                  Document Upload
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMenuClick("bank-details")}
-                >
-                  Bank Details
+              <NavDropdown
+                title="KYC Verification"
+                id="kyc-dropdown"
+                onSelect={() => handleMenuClick("kyc")}
+              >
+                <NavDropdown.Item onClick={() => handleMenuClick("kyc")}>
+                  Upload Documents
                 </NavDropdown.Item>
               </NavDropdown>
 
