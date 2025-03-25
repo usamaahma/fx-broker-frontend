@@ -16,6 +16,12 @@ const kyc = axios.create({
 const account = axios.create({
   baseURL: `${baseURL}/account`, // Ensure this is the correct endpoint for login
 });
+const upload = axios.create({
+  baseURL: `${baseURL}/upload`, // Ensure this is the correct endpoint for login
+});
+const deposit = axios.create({
+  baseURL: `${baseURL}/deposit`, // Ensure this is the correct endpoint for login
+});
 
 // Generic request interceptor for all instances
 const requestInterceptor = (req) => {
@@ -35,4 +41,4 @@ login.interceptors.request.use(requestInterceptor, errorInterceptor);
 kyc.interceptors.request.use(requestInterceptor, errorInterceptor);
 account.interceptors.request.use(requestInterceptor, errorInterceptor);
 
-export { register, login, kyc, account };
+export { register, login, kyc, account, deposit, upload };
