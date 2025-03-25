@@ -1,0 +1,92 @@
+.deposit-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #121212;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+}
+.deposit-card p {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  text-align: center;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.deposit-card {
+  background: #1e1e1e !important;
+  border: 1px solid gold !important;
+  color: white !important;
+}
+
+.deposit-card p {
+  color: white !important;
+}
+
+.deposit-card strong {
+  color: gold !important;
+}
+
+.ant-card-head-title {
+  color: white !important;
+}
+
+.upload-button {
+  width: 100%;
+  background: gold !important;
+  border: none !important;
+  color: black !important;
+  margin-top: 15px;
+}
+
+.uploaded-image-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.uploaded-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border: 1px solid gold;
+  border-radius: 5px;
+}
+
+.deposit-details {
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 15px;
+  background: white !important;
+  color: black !important;
+  border: 1px solid gold !important;
+}
+
+.status-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.status {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pending {
+  color: orange;
+}
+
+@media only screen and (max-width: 720px) {
+  .accounttrc {
+    display: grid !important;
+    font-size: x-small;
+  }
+}

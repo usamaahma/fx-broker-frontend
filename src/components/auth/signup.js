@@ -52,14 +52,13 @@ const SignupPage = () => {
 
   const onFinish = async (values) => {
     console.log("clicked");
-    if (values.age < 18) {
-      toast.error("Sorry, your age is below 18.");
-      return;
-    }
 
     try {
       setLoading(true);
-      const response = await register.post("/register", { ...values, country: selectedCountry });
+      const response = await register.post("/register", {
+        ...values,
+        country: selectedCountry,
+      });
       loginUser(response.data.token);
       toast.success("Signup successful!");
       navigate("/");
@@ -73,51 +72,101 @@ const SignupPage = () => {
   return (
     <div className="signup-container">
       <Card className="signup-card">
-        <Title level={2} className="signup-title">Sign Up</Title>
+        <Title level={2} className="signup-title">
+          Sign Up
+        </Title>
         <Form layout="vertical" onFinish={onFinish}>
           {/* Name */}
-          <Form.Item label={<Text className="signup-label">Name</Text>} name="name" rules={[{ required: true, message: "Please enter your name!" }]}>
+          <Form.Item
+            label={<Text className="signup-label">Name</Text>}
+            name="name"
+            rules={[{ required: true, message: "Please enter your name!" }]}
+          >
             <Input placeholder="Enter your name" className="signup-input" />
           </Form.Item>
 
           {/* Email */}
-          <Form.Item label={<Text className="signup-label">Email</Text>} name="email" rules={[{ required: true, type: "email", message: "Enter a valid email!" }]}>
+          <Form.Item
+            label={<Text className="signup-label">Email</Text>}
+            name="email"
+            rules={[
+              {
+                required: true,
+                type: "email",
+                message: "Enter a valid email!",
+              },
+            ]}
+          >
             <Input placeholder="Enter your email" className="signup-input" />
           </Form.Item>
 
           {/* Password */}
-          <Form.Item label={<Text className="signup-label">Password</Text>} name="password" rules={[{ required: true, message: "Please enter your password!" }]}>
-            <Input.Password placeholder="Enter your password" className="signup-input" />
-          </Form.Item>
-
-          {/* Age */}
-          <Form.Item label={<Text className="signup-label">Age</Text>} name="age" rules={[{ required: true, message: "Please enter your age!" }]}>
-            <Input type="number" placeholder="Enter your age" className="signup-input" />
+          <Form.Item
+            label={<Text className="signup-label">Password</Text>}
+            name="password"
+            rules={[{ required: true, message: "Please enter your password!" }]}
+          >
+            <Input.Password
+              placeholder="Enter your password"
+              className="signup-input"
+            />
           </Form.Item>
 
           {/* Country Dropdown */}
-          <Form.Item label={<Text className="signup-label">Country</Text>} name="country" rules={[{ required: true, message: "Please select your country!" }]}>
-            <Select placeholder="Select your country" onChange={handleCountryChange}>
+          <Form.Item
+            label={<Text className="signup-label">Country</Text>}
+            name="country"
+            rules={[{ required: true, message: "Please select your country!" }]}
+          >
+            <Select
+              placeholder="Select your country"
+              onChange={handleCountryChange}
+            >
               {countries.map((country) => (
-                <Option key={country.value} value={country.value}>{country.label}</Option>
+                <Option key={country.value} value={country.value}>
+                  {country.label}
+                </Option>
               ))}
             </Select>
           </Form.Item>
 
           {/* Phone Number with Auto-Updating Country Code */}
-          <Form.Item label={<Text className="signup-label">Phone Number</Text>} name="phoneNumber" rules={[{ required: true, message: "Please enter your phone number!" }]}>
-            <Input addonBefore={phoneCode} placeholder="Enter your phone number" className="signup-input" />
+          <Form.Item
+            label={<Text className="signup-label">Phone Number</Text>}
+            name="phoneNumber"
+            rules={[
+              { required: true, message: "Please enter your phone number!" },
+            ]}
+          >
+            <Input
+              addonBefore={phoneCode}
+              placeholder="Enter your phone number"
+              className="signup-input"
+            />
           </Form.Item>
 
           {/* Submit Button */}
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="signup-button" loading={loading}>Sign Up</Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="signup-button"
+              loading={loading}
+            >
+              Sign Up
+            </Button>
           </Form.Item>
         </Form>
 
         {/* Login Link */}
         <div className="login-text">
-          <Text>Already have an account? <span className="login-link" onClick={() => navigate("/login")}>Login</span></Text>
+          <Text>
+            {" "}
+            <p style={{ color: "white" }}>Already have an account?</p>{" "}
+            <span className="login-link" onClick={() => navigate("/login")}>
+              Login
+            </span>
+          </Text>
         </div>
       </Card>
     </div>

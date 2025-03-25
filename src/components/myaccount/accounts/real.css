@@ -1,0 +1,97 @@
+/* Container Styling */
+.real-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: black;
+  padding: 20px;
+}
+
+/* Card Styling */
+.real-card {
+  width: 100%;
+  max-width: 450px; /* Max width for large screens */
+  padding: 20px;
+  background: black;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Heading Styling */
+.real-heading {
+  text-align: center;
+  font-size: 22px;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+/* Form Labels */
+.real-container .ant-form-item-label > label {
+  color: white !important;
+  font-weight: bold;
+}
+
+/* Input Fields */
+.ant-input {
+  border: 1px solid #ffd700;
+  color: white !important;
+  background-color: black !important;
+}
+
+/* Placeholder Color */
+.ant-input::placeholder {
+  color: #bbb;
+}
+
+/* Input Focus Effect */
+.ant-input:focus {
+  color: white !important;
+  background-color: black !important;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  background: #ffd700 !important;
+  border-color: #ffd700 !important;
+  color: black;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  background: black !important;
+  border-color: black !important;
+  color: #ffd700 !important;
+}
+
+/* Mobile (small screens) */
+@media (max-width: 480px) {
+  .real-card {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .real-heading {
+    font-size: 18px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* Tablets (medium screens) */
+@media (max-width: 768px) {
+  .real-card {
+    max-width: 380px;
+  }
+}
+
+/* Larger Screens (desktops) */
+@media (max-width: 1024px) {
+  .real-card {
+    max-width: 420px;
+  }
+}
