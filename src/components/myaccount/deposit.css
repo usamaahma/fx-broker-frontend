@@ -1,6 +1,7 @@
 .deposit-container {
   max-width: 500px;
   margin: auto;
+  margin-top: 2rem;
   padding: 20px;
   background: #121212;
   color: white;
