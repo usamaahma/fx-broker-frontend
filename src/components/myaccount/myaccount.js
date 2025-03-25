@@ -10,6 +10,9 @@ import Deposit from "./deposit";
 import Demo from "./accounts/demo";
 import Real from "./accounts/real";
 import KycFinal from "./kycfinal";
+import Withdraw from "./withdraw";
+import Helpdesk from "./helpdesk";
+import Allreports from "./allreports";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -31,13 +34,11 @@ const MyAccount = () => {
       case "deposit":
         return <Deposit />;
       case "withdraw":
-        return <div>💸 Withdraw</div>;
-      case "deposit-report":
-        return <div>📊 Deposit Report</div>;
-      case "withdraw-report":
-        return <div>📈 Withdraw Report</div>;
+        return <div><Withdraw /></div>;
+      case "reports":
+        return <div><Allreports /></div>;
       case "helpdesk":
-        return <div>❓ Helpdesk</div>;
+        return <div><Helpdesk /></div>;
       case "demo-account":
         return (
           <div>
@@ -60,7 +61,7 @@ const MyAccount = () => {
   return (
     <div className="myaccount-container">
       <Navbar expand="lg" expanded={expanded} className="myaccount-navbar">
-        <Container>
+        <Container >
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
             Aljadeed Capitals FX
           </Navbar.Brand>
@@ -69,7 +70,7 @@ const MyAccount = () => {
             onClick={() => setExpanded(expanded ? false : true)}
           />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto">
+            <Nav className="mx-auto" >
               <Nav.Link onClick={() => handleMenuClick("dashboard")}>
                 Dashboard
               </Nav.Link>
@@ -92,8 +93,10 @@ const MyAccount = () => {
                   Withdraw
                 </NavDropdown.Item>
               </NavDropdown>
-
-              <NavDropdown title="My Reports" id="reports-dropdown">
+              <Nav.Link onClick={() => handleMenuClick("reports")}>
+                Transaction History
+              </Nav.Link>
+              {/* <NavDropdown title="My Reports" id="reports-dropdown">
                 <NavDropdown.Item
                   onClick={() => handleMenuClick("deposit-report")}
                 >
@@ -104,7 +107,7 @@ const MyAccount = () => {
                 >
                   Withdraw Report
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
 
               {/* NEW Accounts Dropdown */}
               <NavDropdown title="Accounts" id="accounts-dropdown">
