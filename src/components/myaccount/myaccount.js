@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextapi/authcontext"; // Auth Context
 import Dashboard from "./dashboard";
 import "./myaccount.css";
-import DocumentUploader from "./document";
-import BankDetails from "./bank";
+// import DocumentUploader from "./document";
+// import BankDetails from "./bank";
 import Deposit from "./deposit";
 import Demo from "./accounts/demo";
 import Real from "./accounts/real";
@@ -13,6 +13,7 @@ import KycFinal from "./kycfinal";
 import Withdraw from "./withdraw";
 import Helpdesk from "./helpdesk";
 import Allreports from "./allreports";
+import Accoundetail from "./accountdetail";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -34,11 +35,23 @@ const MyAccount = () => {
       case "deposit":
         return <Deposit />;
       case "withdraw":
-        return <div><Withdraw /></div>;
+        return (
+          <div>
+            <Withdraw />
+          </div>
+        );
       case "reports":
-        return <div><Allreports /></div>;
+        return (
+          <div>
+            <Allreports />
+          </div>
+        );
       case "helpdesk":
-        return <div><Helpdesk /></div>;
+        return (
+          <div>
+            <Helpdesk />
+          </div>
+        );
       case "demo-account":
         return (
           <div>
@@ -52,7 +65,11 @@ const MyAccount = () => {
           </div>
         );
       case "accounts-detail":
-        return <div>📋 All Accounts Detail</div>;
+        return (
+          <div>
+            <Accoundetail />
+          </div>
+        );
       default:
         return <Dashboard />;
     }
@@ -61,7 +78,7 @@ const MyAccount = () => {
   return (
     <div className="myaccount-container">
       <Navbar expand="lg" expanded={expanded} className="myaccount-navbar">
-        <Container >
+        <Container>
           <Navbar.Brand onClick={() => navigate("/")} className="navbar-logo">
             Aljadeed Capitals FX
           </Navbar.Brand>
@@ -70,7 +87,7 @@ const MyAccount = () => {
             onClick={() => setExpanded(expanded ? false : true)}
           />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto" >
+            <Nav className="mx-auto">
               <Nav.Link onClick={() => handleMenuClick("dashboard")}>
                 Dashboard
               </Nav.Link>
