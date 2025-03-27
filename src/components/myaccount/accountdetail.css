@@ -1,0 +1,34 @@
+.account-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  border: 1px solid gold;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+  text-align: center;
+  color: white;
+}
+
+.account-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 15px;
+}
+
+.email-text {
+  font-size: 18px;
+  color: #0f0;
+  background: rgba(0, 255, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.no-account {
+  font-size: 16px;
+  color: #ff4444;
+  background: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+}
