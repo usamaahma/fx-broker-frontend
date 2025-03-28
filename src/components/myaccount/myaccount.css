@@ -120,7 +120,16 @@ Button:hover {
   background-color: #ffd700 !important;
   color: black !important;
 }
+.navbar-collapse .dropdown-menu {
+  text-align: center; /* Text center align */
+}
 
+.navbar-collapse .dropdown-menu .dropdown-item {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  text-align: center;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .navbar-logo {
