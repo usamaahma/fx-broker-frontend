@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-import { Button, Card, Upload, Image, message } from "antd";
-import { UploadOutlined, ClockCircleOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import { Button, Card, Upload, Image, Input, message } from "antd";
+import {
+  UploadOutlined,
+  ClockCircleOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 import axios from "axios";
 import "./deposit.css";
 import { deposit } from "../../utils/axios";
@@ -12,7 +16,26 @@ const Deposit = () => {
   };
 
   const [depositSlip, setDepositSlip] = useState(null);
-  const [status, setStatus] = useState("Pending");
+  const [uploading, setUploading] = useState(false);
+  const [deposits, setDeposits] = useState([]);
+  const [tradingAccountId, setTradingAccountId] = useState("");
+  const [amount, setAmount] = useState("");
+
+  useEffect(() => {
+    fetchDeposits();
+  }, []);
+
+  const fetchDeposits = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return;
+
+    try {
+      const response = await deposit.get(`/?user=${user.id}`);
+      setDeposits(response.data);
+    } catch (error) {
+      console.error("Error fetching deposits:", error);
+    }
+  };
 
   const handleUpload = async (file) => {
     if (!file) {
@@ -20,9 +43,11 @@ const Deposit = () => {
       return false;
     }
 
+    setUploading(true);
+
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "jadeedskills"); // Unsigned upload preset
+    formData.append("upload_preset", "jadeedskills");
     formData.append("folder", "deposits");
 
     try {
@@ -40,14 +65,16 @@ const Deposit = () => {
     } catch (error) {
       console.error("Upload failed:", error.response?.data || error);
       message.error("Image upload failed. Please check API credentials.");
+    } finally {
+      setUploading(false);
     }
 
     return false;
   };
 
   const handleSubmit = async () => {
-    if (!depositSlip) {
-      message.error("Please upload a deposit slip first.");
+    if (!depositSlip || !tradingAccountId || !amount) {
+      message.error("Please fill in all fields and upload a deposit slip.");
       return;
     }
 
@@ -61,13 +88,16 @@ const Deposit = () => {
       const response = await deposit.post("/", {
         user: user.id,
         image: depositSlip,
+        tradingAccountId,
+        amount,
       });
 
       if (response.status === 201) {
-        // Check if response status is 201
         toast.success("You will be notified by your email about your deposit!");
-        setStatus("Submitted");
         setDepositSlip("");
+        setTradingAccountId("");
+        setAmount("");
+        fetchDeposits(); // Refresh deposits list
       } else {
         message.error("Deposit submission failed!");
       }
@@ -90,6 +120,21 @@ const Deposit = () => {
         </p>
       </Card>
 
+      <Input
+        placeholder="Enter Trading Account ID"
+        className="deposit-input"
+        value={tradingAccountId}
+        onChange={(e) => setTradingAccountId(e.target.value)}
+      />
+
+      <Input
+        placeholder="Enter Amount"
+        type="number"
+        className="deposit-input"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+
       <Upload
         beforeUpload={(file) => {
           handleUpload(file);
@@ -97,8 +142,12 @@ const Deposit = () => {
         }}
         showUploadList={false}
       >
-        <Button icon={<UploadOutlined />} className="upload-button">
-          Upload Deposit Slip
+        <Button
+          icon={<UploadOutlined />}
+          className="upload-button"
+          disabled={uploading}
+        >
+          {uploading ? "Uploading..." : "Upload Deposit Slip"}
         </Button>
       </Upload>
 
@@ -109,18 +158,24 @@ const Deposit = () => {
             alt="Deposit Slip"
             className="uploaded-image"
           />
+          <Button
+            type="primary"
+            danger
+            shape="circle"
+            icon={<CloseOutlined />}
+            className="delete-icon"
+            onClick={() => setDepositSlip(null)}
+          />
         </div>
       )}
 
-      <Button className="submit-button" onClick={handleSubmit}>
+      <Button
+        className="submit-button"
+        onClick={handleSubmit}
+        disabled={!depositSlip || !tradingAccountId || !amount}
+      >
         Submit
       </Button>
-
-      <div className="status-container">
-        <span className="status pending">
-          <ClockCircleOutlined /> {status}
-        </span>
-      </div>
     </div>
   );
 };

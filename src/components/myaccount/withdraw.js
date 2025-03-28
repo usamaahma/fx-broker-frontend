@@ -34,15 +34,15 @@ const Withdraw = () => {
             <Card className="withdraw-card" title="Withdraw Funds">
                 <Form form={form} layout="vertical" onFinish={onFinish}>
                     <Form.Item
-                        label="Account Number"
+                        label="Bank Account Number"
                         name="accountNumber"
                         rules={[{ required: true, message: 'Please enter your Account Number' }]}
                     >
-                        <Input placeholder="Enter Account Number" />
+                        <Input placeholder="Jazzcash/Bank Acc No. etc" />
                     </Form.Item>
 
                     <Form.Item
-                        label="Account Name"
+                        label="Bank Account Name"
                         name="accountName"
                         rules={[{ required: true, message: 'Please enter your Account Name' }]}
                     >
