@@ -1,84 +1,101 @@
 .landing-footer {
-    background: linear-gradient(135deg, #000, #1a1a1a);
-    color: white;
-    text-align: center;
-    padding: 3rem 2rem;
-    font-family: "Poppins", sans-serif;
-    position: relative;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  font-family: "Poppins", sans-serif;
+  position: relative;
 }
 
 .footer-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: gold;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid gold;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid gold;
 }
 
 .footer-section {
-    min-width: 200px;
-    text-align: left;
+  min-width: 200px;
+  text-align: left;
 }
 
 .footer-section h4 {
-    font-size: 1.2rem;
-    color: gold;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    border-bottom: 2px solid gold;
-    display: inline-block;
-    padding-bottom: 5px;
+  font-size: 1.2rem;
+  color: gold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  border-bottom: 2px solid gold;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .footer-section p {
-    color: #ccc;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .footer-section p:hover {
-    color: gold;
-    transform: scale(1.05);
+  color: gold;
+  transform: scale(1.05);
 }
 
 .footer-warning {
-    margin: 2rem auto;
-    max-width: 900px;
-    background: rgba(255, 215, 0, 0.1);
-    padding: 1rem;
-    border-left: 4px solid gold;
-    border-radius: 5px;
+  margin: 2rem auto;
+  max-width: 900px;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 1rem;
+  border-left: 4px solid gold;
+  border-radius: 5px;
 }
 
 .footer-warning p {
-    font-size: 0.9rem;
-    color: #ddd;
-    line-height: 1.5;
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.5;
 }
 
 .footer-bottom {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #888;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #888;
 }
 
 .footer-link {
-    text-decoration: none;
-    color: white;
-    /* Change to your theme color */
-    transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  color: white;
+  /* Change to your theme color */
+  transition: color 0.3s ease-in-out;
 }
 
 .footer-link:hover {
-    color: gold;
-    /* Golden effect on hover */
+  color: gold;
+  /* Golden effect on hover */
+}
+@media (max-width: 768px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns in one row */
+    gap: 1.5rem; /* Spacing between sections */
+    text-align: center;
+  }
+
+  .footer-section {
+    min-width: 140px; /* Ensure proper spacing */
+  }
+
+  /* If odd number of sections, make last one center */
+  .footer-section:last-child {
+    grid-column: span 2; /* Full width if odd count */
+  }
 }

@@ -84,9 +84,10 @@ const MyAccount = () => {
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
+            className="custom-toggler"
             onClick={() => setExpanded(expanded ? false : true)}
           />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav"  >
             <Nav className="mx-auto">
               <Nav.Link onClick={() => handleMenuClick("dashboard")}>
                 Dashboard
