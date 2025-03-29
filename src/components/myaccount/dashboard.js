@@ -35,7 +35,7 @@ const Dashboard = () => {
 
         const userId = encodeURIComponent(user.id);
 
-        // 🔹 Fetch deposits & withdrawals
+        // Fetch deposits & withdrawals
         const depdrawsResponse = await depdraws
           .get(`/${userId}`)
           .catch((err) => {
@@ -57,42 +57,42 @@ const Dashboard = () => {
         setDepositTotal(totalDeposit);
         setWithdrawTotal(totalWithdraw);
 
-        // 🔹 Handle Empty Graph (Show Flat Line if no data)
+        // Handle Empty Graph - Show flat lines at 0 when no data
         const formattedChartData =
-          deposit.length || withdraw.length
+          deposit.length > 0 || withdraw.length > 0
             ? deposit.map((item, index) => ({
-                name: `Month ${index + 1}`,
-                deposit: item.amount || 10, // Default value if 0
-                withdraw: withdraw[index]?.amount || 5, // Default value if 0
-              }))
+              name: `Month ${index + 1}`,
+              deposit: item.amount || 0,
+              withdraw: withdraw[index]?.amount || 0,
+            }))
             : [
-                { name: "Jan", deposit: 10, withdraw: 5 },
-                { name: "Feb", deposit: 15, withdraw: 7 },
-                { name: "Mar", deposit: 20, withdraw: 8 },
-              ]; // Default dataset for empty case ✅
+              { name: "Jan", deposit: 0, withdraw: 0 },
+              { name: "Feb", deposit: 0, withdraw: 0 },
+              { name: "Mar", deposit: 0, withdraw: 0 },
+              { name: "Apr", deposit: 0, withdraw: 0 },
+              { name: "May", deposit: 0, withdraw: 0 },
+              { name: "Jun", deposit: 0, withdraw: 0 },
+            ];
 
         setChartData(formattedChartData);
 
-        // 🔹 Fetch account details
+        // Fetch account details
         const accountResponse = await account.get(`/${userId}`).catch((err) => {
           console.error("Accounts API Error:", err);
           return { data: {} };
         });
 
-        // Ensure data is an array
         const accountData = accountResponse.data;
         const accounts = Array.isArray(accountData)
           ? accountData
           : [accountData];
 
-        // Filter verified real accounts
         const realAccounts = accounts.filter(
           (acc) =>
             acc.accountType?.toLowerCase() === "real" &&
             acc.status === "verified"
         ).length;
 
-        console.log(realAccounts, "rree");
         setLiveAccounts(realAccounts);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -140,7 +140,7 @@ const Dashboard = () => {
           <LineChart data={chartData}>
             <CartesianGrid stroke="rgba(255, 255, 255, 0.2)" />
             <XAxis dataKey="name" stroke="#fff" />
-            <YAxis stroke="#fff" />
+            <YAxis stroke="#fff" domain={[0, 'auto']} />
             <Tooltip />
             <Legend />
             <Line
@@ -149,6 +149,7 @@ const Dashboard = () => {
               stroke="#ffd700"
               strokeWidth={3}
               dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
             />
             <Line
               type="monotone"
@@ -156,6 +157,7 @@ const Dashboard = () => {
               stroke="#ff4d4f"
               strokeWidth={3}
               dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
             />
           </LineChart>
         </ResponsiveContainer>
