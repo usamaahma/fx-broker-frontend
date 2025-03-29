@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Card, message } from 'antd';
 import './withdraw.css';
 import { withdraw } from '../../utils/axios';
+import { toast } from 'react-toastify';
 
 const Withdraw = () => {
     const [form] = Form.useForm(); // Create a form instance
@@ -16,12 +17,12 @@ const Withdraw = () => {
 
             const payload = {
                 ...values,
-                user: user.id, // Attach userId from local storage
+                userId: user.id, // Attach userId from local storage
             };
 
             await withdraw.post('/', payload);
 
-            message.success('Withdrawal request submitted successfully!');
+            toast.success('Withdrawal request submitted successfully!');
             form.resetFields(); // Clear the form after success
         } catch (error) {
             console.error('Withdraw Error:', error);
