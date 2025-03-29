@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Card, message } from 'antd';
 import './withdraw.css';
 import { withdraw } from '../../utils/axios';
+import { toast } from 'react-toastify';
 
 const Withdraw = () => {
     const [form] = Form.useForm(); // Create a form instance
