@@ -16,12 +16,12 @@ const Withdraw = () => {
 
             const payload = {
                 ...values,
-                user: user.id, // Attach userId from local storage
+                userId: user.id, // Attach userId from local storage
             };
 
             await withdraw.post('/', payload);
 
-            message.success('Withdrawal request submitted successfully!');
+            toast.success('Withdrawal request submitted successfully!');
             form.resetFields(); // Clear the form after success
         } catch (error) {
             console.error('Withdraw Error:', error);
