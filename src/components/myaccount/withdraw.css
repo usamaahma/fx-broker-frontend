@@ -1,5 +1,6 @@
+/* Main Container */
 .withdraw-container {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     height: auto;
@@ -7,6 +8,7 @@
     padding: 20px;
 }
 
+/* Withdraw Card */
 .withdraw-card {
     width: 100%;
     max-width: 400px;
@@ -60,6 +62,25 @@
     background-color: #ffcc00;
 }
 
+/* Withdrawal Requests Section */
+.withdraw-requests-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1000px;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    border: 1px solid gold;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    margin-top: 20px;
+}
+
 /* Fully Responsive Design */
 @media (max-width: 768px) {
     .withdraw-container {
@@ -71,6 +92,16 @@
         max-width: 100%;
         padding: 15px;
     }
+
+    .withdraw-requests-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .withdraw-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -81,5 +112,9 @@
     .withdraw-btn {
         font-size: 14px;
         padding: 8px;
+    }
+
+    .withdraw-requests-container {
+        padding: 12px;
     }
 }

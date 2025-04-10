@@ -27,6 +27,31 @@
   color: white !important;
 }
 
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.verified {
+  color: green;
+}
+
+.status.rejected {
+  color: red;
+}
+
+.deposit-history {
+  margin-top: 30px;
+}
+
+.deposit-history-card {
+  margin-bottom: 20px;
+}
+
 .deposit-card strong {
   color: gold !important;
 }
@@ -47,6 +72,7 @@
   margin-top: 15px;
   text-align: center;
 }
+
 .deposit-input {
   width: 100%;
   padding: 10px;
@@ -56,9 +82,11 @@
   color: white;
   margin-top: 10px;
 }
+
 .deposit-input::placeholder {
   color: rgba(255, 215, 0, 0.7);
 }
+
 .uploaded-image {
   width: 100%;
   max-height: 200px;
@@ -132,6 +160,7 @@
   border: none !important;
   width: 100%;
 }
+
 @media only screen and (max-width: 720px) {
   .accounttrc {
     display: grid !important;

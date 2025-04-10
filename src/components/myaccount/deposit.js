@@ -30,8 +30,8 @@ const Deposit = () => {
     if (!user) return;
 
     try {
-      const response = await deposit.get(`/?user=${user.id}`);
-      setDeposits(response.data);
+      const response = await deposit.get(`/user/${user.id}`);
+      setDeposits([response.data]);
     } catch (error) {
       console.error("Error fetching deposits:", error);
     }
@@ -90,10 +90,11 @@ const Deposit = () => {
         image: depositSlip,
         tradingAccountId,
         amount,
+        status: 'pending',
       });
 
       if (response.status === 201) {
-        toast.success("You will be notified by your email about your deposit!");
+        toast.success("Deposit request submitted successfully!");
         setDepositSlip("");
         setTradingAccountId("");
         setAmount("");
@@ -176,6 +177,31 @@ const Deposit = () => {
       >
         Submit
       </Button>
+
+      <div className="deposit-history">
+        <h3>Your Deposit History</h3>
+        {deposits.length === 0 ? (
+          <p>No deposit records found.</p>
+        ) : (
+          deposits.map((deposit, index) => (
+            <Card key={index} className="deposit-history-card">
+              <p><strong>Trading Account ID:</strong> {deposit.tradingAccountId}</p>
+              <p><strong>Amount:</strong> ${deposit.amount}</p>
+              <p><strong>Status:</strong>
+                <span className={`status ${deposit.status}`}> {deposit.status}</span>
+              </p>
+              {deposit.image && (
+                <Image
+                  src={deposit.image}
+                  alt="Deposit Slip"
+                  width={200}
+                  style={{ marginTop: '10px' }}
+                />
+              )}
+            </Card>
+          ))
+        )}
+      </div>
     </div>
   );
 };

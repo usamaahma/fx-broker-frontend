@@ -90,13 +90,18 @@ const KycFinal = () => {
     try {
       await kyc.post("/", payload);
       message.success("KYC submitted successfully!");
+
+      // ✅ Reset form and images
+      form.resetFields();
+      setPoiImages([]);
+
+      // ✅ Refetch to get updated data
       fetchKYCDetails();
     } catch (error) {
       console.error("Error submitting KYC:", error);
       message.error("Failed to submit KYC.");
     }
   };
-
   return (
     <div className="kyc-container">
       <Card title="KYC Verification" className="kyc-card">
@@ -194,9 +199,22 @@ const KycFinal = () => {
               />
             ))}
           </div>
-          <p className="status-text">
+          <p
+            className="status-text"
+            style={{
+              color:
+                status === "pending"
+                  ? "orange"
+                  : status === "rejected"
+                    ? "red"
+                    : "green",
+              fontWeight: "bold",
+            }}
+          >
             {status === "Pending" ? (
               <ClockCircleOutlined />
+            ) : status === "Rejected" ? (
+              <DeleteOutlined />
             ) : (
               <CheckCircleOutlined />
             )}{" "}
