@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Upload, Image, Input, Form, message } from "antd";
+import { Button, Card, Upload, Image, Input, Form, message, Spin } from "antd";
 import {
   UploadOutlined,
   CheckCircleOutlined,
@@ -14,6 +14,7 @@ const KycFinal = () => {
   const [poiImages, setPoiImages] = useState([]);
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState("Pending");
+  const [uploading, setUploading] = useState(false);
   const [bankDetails, setBankDetails] = useState(null);
   const [form] = Form.useForm();
 
@@ -37,7 +38,9 @@ const KycFinal = () => {
     }
   };
 
-  const handleUpload = async (file) => {
+  const handleUpload = async ({ file, onSuccess, onError }) => {
+    setUploading(true);
+
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "jadeedskills");
@@ -48,15 +51,19 @@ const KycFinal = () => {
         `https://api.cloudinary.com/v1_1/dvm237msr/image/upload`,
         formData
       );
+
       if (response.data.secure_url) {
         setPoiImages((prev) => [...prev, response.data.secure_url]);
         message.success("Image uploaded successfully!");
+        onSuccess("ok"); // Notify Upload component
       }
     } catch (error) {
       console.error("Upload failed:", error);
       message.error("Image upload failed.");
+      onError(error);
+    } finally {
+      setUploading(false);
     }
-    return false;
   };
 
   const handleSubmission = async (values) => {
@@ -83,19 +90,26 @@ const KycFinal = () => {
     try {
       await kyc.post("/", payload);
       message.success("KYC submitted successfully!");
+
+      // ✅ Reset form and images
+      form.resetFields();
+      setPoiImages([]);
+
+      // ✅ Refetch to get updated data
       fetchKYCDetails();
     } catch (error) {
       console.error("Error submitting KYC:", error);
       message.error("Failed to submit KYC.");
     }
   };
-
   return (
     <div className="kyc-container">
       <Card title="KYC Verification" className="kyc-card">
-        <Upload beforeUpload={handleUpload} multiple showUploadList={false}>
-          <Button className="upload-button">
-            <UploadOutlined /> Upload POI
+        <Upload customRequest={handleUpload} multiple showUploadList={false}>
+          <h5 style={{ color: "white" }}>CNIC Details</h5>
+          <Button className="upload-button" disabled={uploading}>
+            {uploading ? <Spin size="small" /> : <UploadOutlined />}
+            {uploading ? " Uploading..." : " Upload CNIC Images"}
           </Button>
         </Upload>
         <div className="image-preview">
@@ -118,6 +132,7 @@ const KycFinal = () => {
             </div>
           ))}
         </div>
+        <h5 style={{ color: "white" }}>Bank Details</h5>
 
         <Form
           form={form}
@@ -184,9 +199,22 @@ const KycFinal = () => {
               />
             ))}
           </div>
-          <p className="status-text">
+          <p
+            className="status-text"
+            style={{
+              color:
+                status === "pending"
+                  ? "orange"
+                  : status === "rejected"
+                    ? "red"
+                    : "green",
+              fontWeight: "bold",
+            }}
+          >
             {status === "Pending" ? (
               <ClockCircleOutlined />
+            ) : status === "Rejected" ? (
+              <DeleteOutlined />
             ) : (
               <CheckCircleOutlined />
             )}{" "}
