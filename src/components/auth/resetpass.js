@@ -30,16 +30,19 @@ const ResetPassword = () => {
     setLoading(true);
     try {
       const response = await resetpassword.post("/", {
-        resetPasswordToken,
+        resetPasswordToken, // Make sure this matches backend expectation
         newPassword: password,
       });
       message.success(response.data.message);
+      // Optionally redirect to login page after success
     } catch (error) {
       console.log("Error response: ", error?.response?.data);
       message.error(
         error?.response?.data?.message ||
-          "Failed to reset password. Please try again."
+          "Failed to reset password. The link may have expired or is invalid."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
