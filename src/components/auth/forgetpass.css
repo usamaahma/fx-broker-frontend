@@ -1,0 +1,102 @@
+/* Wrapper */
+.forgot-password-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000; /* Black background */
+  padding: 20px;
+}
+
+/* Container */
+.forgot-password-container {
+  background-color: #fff; /* White card */
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3); /* Golden glow */
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid #ffd700;
+  transition: all 0.3s ease;
+}
+
+.forgot-password-container:hover {
+  box-shadow: 0 8px 28px rgba(255, 215, 0, 0.5);
+}
+
+/* Heading */
+.forgot-password-container h2 {
+  font-size: 26px;
+  color: #000;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 10px;
+}
+
+/* Input */
+.forgot-password-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ffd700;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.forgot-password-input:focus {
+  border-color: #000;
+  outline: none;
+}
+
+/* Button */
+.forgot-password-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #ffd700; /* Golden button */
+  color: #000; /* Black text */
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.forgot-password-btn:hover {
+  background-color: #000 !important;
+  color: #ffd700 !important;
+  border: 1px solid #ffd700 !important;
+}
+
+.forgot-password-btn:focus {
+  outline: none;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 600px) {
+  .forgot-password-container {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .forgot-password-input,
+  .forgot-password-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .forgot-password-container {
+    padding: 15px;
+  }
+
+  .forgot-password-input,
+  .forgot-password-btn {
+    font-size: 13px;
+    padding: 9px;
+  }
+}

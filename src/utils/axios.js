@@ -31,6 +31,9 @@ const helpdesk = axios.create({
 const depdraws = axios.create({
   baseURL: `${baseURL}/depdraws`, // Ensure this is the correct endpoint for login
 });
+const forgetPassword = axios.create({
+  baseURL: `${baseURL}/auth/forgot-password`, // Correct the baseURL to point to /auth
+});
 
 // Generic request interceptor for all instances
 const requestInterceptor = (req) => {
@@ -52,6 +55,7 @@ account.interceptors.request.use(requestInterceptor, errorInterceptor);
 withdraw.interceptors.request.use(requestInterceptor, errorInterceptor);
 helpdesk.interceptors.request.use(requestInterceptor, errorInterceptor);
 depdraws.interceptors.request.use(requestInterceptor, errorInterceptor);
+forgetPassword.interceptors.request.use(requestInterceptor, errorInterceptor);
 
 export {
   register,
@@ -63,4 +67,5 @@ export {
   withdraw,
   helpdesk,
   depdraws,
+  forgetPassword,
 };
