@@ -14,6 +14,7 @@ import MyAccount from "./components/myaccount/myaccount";
 import Footer from "./components/footer/footer";
 import ContactUs from "./components/landing/contact";
 import AboutUs from "./components/landing/about";
+import Forgetpassword from "./components/auth/forgetpassword";
 
 const AppRouter = () => {
   const { token } = useAuth(); // Get token from context
@@ -56,6 +57,7 @@ const AppRouter = () => {
 
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/forget-password" element={<Forgetpassword />} />
 
         {/* Catch-all route (404 or Redirect) */}
         <Route path="*" element={<Navigate to="/" replace />} />
