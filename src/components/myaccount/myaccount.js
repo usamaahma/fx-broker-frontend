@@ -152,16 +152,16 @@ const MyAccount = () => {
             </Nav>
 
             {token ? (
-              <NavDropdown title={user?.name || "User"} id="user-dropdown">
-                <NavDropdown.Item
-                  onClick={() => {
-                    logoutUser();
-                    setExpanded(false); // Close on logout
-                  }}
-                >
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Button
+                variant="outline-light"
+                onClick={() => {
+                  logoutUser();
+                  setExpanded(false);
+                }}
+                className="logout-butt"
+              >
+                Logout
+              </Button>
             ) : (
               <Button onClick={() => navigate("/login")}>Login</Button>
             )}

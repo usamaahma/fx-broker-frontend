@@ -18,9 +18,12 @@
   top: 100%;
   left: 0;
   width: 100%;
-  background: #000; /* Ensure visibility */
-  z-index: 1050; /* Ensure it appears above content */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  background: #000;
+  /* Ensure visibility */
+  z-index: 1050;
+  /* Ensure it appears above content */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  /* Optional shadow */
 }
 
 /* Dropdown menu black background */
@@ -44,7 +47,8 @@
 
 .navbar-light .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='yellow' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  background-color: transparent !important; /* Remove background */
+  background-color: transparent !important;
+  /* Remove background */
 }
 
 /* White icon on click (expanded) */
@@ -52,6 +56,7 @@
 Button:hover {
   background-color: transparent !important;
 }
+
 /* Logo */
 .navbar-logo {
   color: #ffd700 !important;
@@ -97,10 +102,17 @@ Button:hover {
   font-size: 20px;
   font-weight: bold;
 }
-
+.logout-butt:hover{
+background-color: #ffd700 !important;
+}
 /* User Profile Dropdown */
 #user-dropdown {
   margin-left: 20px;
+}
+
+#user-dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
 }
 
 #user-dropdown .dropdown-toggle {
@@ -120,16 +132,21 @@ Button:hover {
   background-color: #ffd700 !important;
   color: black !important;
 }
+
 .navbar-collapse .dropdown-menu {
-  text-align: center; /* Text center align */
+  text-align: center;
+  /* Text center align */
 }
 
 .navbar-collapse .dropdown-menu .dropdown-item {
   display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
+  justify-content: center;
+  /* Horizontally center */
+  align-items: center;
+  /* Vertically center */
   text-align: center;
 }
+
 /* Responsive */
 @media (max-width: 768px) {
   .navbar-logo {
