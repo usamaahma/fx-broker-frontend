@@ -21,7 +21,7 @@ const Landing = () => {
     {
       title: "Zero Delay",
       icon: <ClockCircleOutlined />,
-      content: "Trade market Pairs with zero delay",
+      content: "Trade market with zero delay and fast execution on charts",
     },
     {
       title: "Fast Execution",
