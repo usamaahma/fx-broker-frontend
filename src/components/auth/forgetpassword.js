@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import "./forgetpass.css"; // Import your custom styles
 import { forgetPassword } from "../../utils/axios";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
 
   const handleSubmit = async () => {
     setLoading(true);
     try {
       const response = await forgetPassword.post("/", { email });
-      console.log(response);
-      message.success(" Please check your email address.");
+      toast.success(
+        "Forget Password link is sent to your given email address."
+      );
+      form.resetFields();
     } catch (err) {
       // Check if it's an API call error or another issue
       if (err.response) {
