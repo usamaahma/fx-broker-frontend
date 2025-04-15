@@ -3,7 +3,7 @@ import { Form, Input, Button, Card, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../utils/axios"; // API call
 import { useAuth } from "../contextapi/authcontext"; // Use Auth Context
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "./signup.css"; // Import CSS file
 
 const { Title, Text } = Typography;
@@ -85,7 +85,7 @@ const SignupPage = () => {
 
           <Form.Item
             label={<Text className="signup-label">Phone Number</Text>}
-            name="phoneNumber"
+            name="phonenumber"
             rules={[
               { required: true, message: "Please enter your phone number!" },
             ]}
