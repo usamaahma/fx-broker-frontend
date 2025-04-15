@@ -23,7 +23,7 @@ const SignupPage = () => {
       });
       loginUser(response.data.token);
       toast.success("Signup successful!");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed!");
     } finally {
