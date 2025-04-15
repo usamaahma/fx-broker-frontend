@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // to extract token from URL
-import { message, Input, Button, Row, Col, Space } from "antd"; // Ant Design components
+import { useNavigate } from "react-router-dom";
+import { message, Input, Button, Row, Col, Space } from "antd";
 import { resetpassword } from "../../utils/axios";
 import "./resetpassword.css";
 import { useLocation } from "react-router-dom";
@@ -9,13 +9,14 @@ const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  //   const { resetPasswordToken } = useParams(); // Get token from URL
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const resetPasswordToken = searchParams.get("token");
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log(resetPasswordToken, "tokemr");
     if (!resetPasswordToken) {
       message.error("Invalid reset link");
     }
@@ -29,62 +30,53 @@ const ResetPassword = () => {
 
     setLoading(true);
     try {
-      const response = await resetpassword.post("/", {
-        resetPasswordToken, // Make sure this matches backend expectation
+      await resetpassword.post("/", {
+        resetPasswordToken,
         newPassword: password,
       });
-      message.success(response.data.message);
-      // Optionally redirect to login page after success
+      setPassword("");
+      setConfirmPassword("");
+      toast.success("Password reset successfully! Please login.");
+      navigate("/login");
     } catch (error) {
-      console.log("Error response: ", error?.response?.data);
-      message.error(
-        error?.response?.data?.message ||
-          "Failed to reset password. The link may have expired or is invalid."
-      );
+      const errorMessage =
+        error.response?.status === 404
+          ? "Email not found. Please check the reset link or try again."
+          : error.response?.data?.message ||
+            (error.response?.status === 401
+              ? "The reset link is invalid or has expired."
+              : "Failed to reset password. Please try again.");
+
+      message.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="reset-password-container">
-      <Row
-        justify="center"
-        align="middle"
-        style={{
-          height: "60vh", // Make sure it's full screen height
-          marginTop: "0", // No margin at the top, just center the content
-        }}
-      >
-        <Col xs={24} sm={16} md={12} lg={8} xl={6}>
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-            }}
-          >
-            <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-              Reset Password
-            </h2>
-
-            {/* Input Fields */}
+    <div className="reset-container">
+      <Row justify="center" align="middle" className="reset-row">
+        <Col xs={24} sm={20} md={16} lg={10} xl={6}>
+          <div className="reset-card">
+            <h2 className="reset-title">Reset Password</h2>
             <Space direction="vertical" style={{ width: "100%" }} size="large">
               <Input.Password
                 placeholder="Enter new password"
+                className="reset-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Input.Password
                 placeholder="Confirm new password"
+                className="reset-input"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <Button
                 type="primary"
-                onClick={handleResetPassword}
+                className="reset-button"
                 loading={loading}
-                style={{ width: "100%" }}
+                onClick={handleResetPassword}
               >
                 {loading ? "Resetting..." : "Reset Password"}
               </Button>
