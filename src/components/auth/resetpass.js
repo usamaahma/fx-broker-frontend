@@ -4,6 +4,7 @@ import { message, Input, Button, Row, Col, Space } from "antd";
 import { resetpassword } from "../../utils/axios";
 import "./resetpassword.css";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
