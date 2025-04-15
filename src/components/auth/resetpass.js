@@ -32,7 +32,7 @@ const ResetPassword = () => {
     setLoading(true);
     try {
       await resetpassword.post("/", {
-        resetPasswordToken,
+        token:resetPasswordToken,
         newPassword: password,
       });
       setPassword("");
