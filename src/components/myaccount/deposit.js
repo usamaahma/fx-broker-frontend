@@ -31,12 +31,11 @@ const Deposit = () => {
 
     try {
       const response = await deposit.get(`/user/${user.id}`);
-      setDeposits([response.data]);
+      setDeposits(response.data); // ✅ Direct assignment
     } catch (error) {
       console.error("Error fetching deposits:", error);
     }
   };
-
   const handleUpload = async (file) => {
     if (!file) {
       message.error("No file selected.");
