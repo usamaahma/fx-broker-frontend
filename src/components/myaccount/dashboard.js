@@ -35,36 +35,36 @@ const Dashboard = () => {
 
         const userId = encodeURIComponent(user.id);
 
-        // Fetch deposits & withdrawals
-        const depdrawsResponse = await depdraws
-          .get(`/${userId}`)
-          .catch((err) => {
-            console.error("Deposits & Withdrawals API Error:", err);
-            return { data: { deposit: [], withdraw: [] } };
-          });
+        const depdrawsResponse = await depdraws.get(`/${userId}`).catch((err) => {
+          console.error("Deposits & Withdrawals API Error:", err);
+          return { data: [] };
+        });
 
-        const { deposit = [], withdraw = [] } = depdrawsResponse.data;
+        const data = depdrawsResponse.data || [];
 
-        const totalDeposit = deposit.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
-        const totalWithdraw = withdraw.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
+        // Filter and sum deposits
+        const totalDeposit = data
+          .filter((item) => item.deposit)
+          .reduce((sum, item) => sum + (item.deposit || 0), 0);
+
+        // Filter and sum withdrawals
+        const totalWithdraw = data
+          .filter((item) => item.withdraw)
+          .reduce((sum, item) => sum + (item.withdraw || 0), 0);
 
         setDepositTotal(totalDeposit);
         setWithdrawTotal(totalWithdraw);
 
-        // Handle Empty Graph - Show flat lines at 0 when no data
-        const formattedChartData =
-          deposit.length > 0 || withdraw.length > 0
-            ? deposit.map((item, index) => ({
-              name: `Month ${index + 1}`,
-              deposit: item.amount || 0,
-              withdraw: withdraw[index]?.amount || 0,
-            }))
+        // Build chart data
+        const formattedChartData = data.map((item, index) => ({
+          name: `Txn ${index + 1}`,
+          deposit: item.deposit || 0,
+          withdraw: item.withdraw || 0,
+        }));
+
+        setChartData(
+          formattedChartData.length > 0
+            ? formattedChartData
             : [
               { name: "Jan", deposit: 0, withdraw: 0 },
               { name: "Feb", deposit: 0, withdraw: 0 },
@@ -72,20 +72,17 @@ const Dashboard = () => {
               { name: "Apr", deposit: 0, withdraw: 0 },
               { name: "May", deposit: 0, withdraw: 0 },
               { name: "Jun", deposit: 0, withdraw: 0 },
-            ];
+            ]
+        );
 
-        setChartData(formattedChartData);
-
-        // Fetch account details
-        const accountResponse = await account.get(`/${userId}`).catch((err) => {
+        // Fetch accounts
+        const accountResponse = await account.get(`/user/${userId}`).catch((err) => {
           console.error("Accounts API Error:", err);
           return { data: {} };
         });
 
         const accountData = accountResponse.data;
-        const accounts = Array.isArray(accountData)
-          ? accountData
-          : [accountData];
+        const accounts = Array.isArray(accountData) ? accountData : [accountData];
 
         const realAccounts = accounts.filter(
           (acc) =>

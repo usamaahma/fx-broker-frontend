@@ -9,7 +9,7 @@ function Accoundetail() {
     const fetchAccountDetails = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user")); // Get user from localStorage
-        const response = await account.get(`/${user.id}`); // API call
+        const response = await account.get(`/user/${user.id}`); // API call
         const realaccount = response.data;
 
         // Check if accountType is "real" and status is "verified"

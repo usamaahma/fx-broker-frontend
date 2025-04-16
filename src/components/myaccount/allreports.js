@@ -8,7 +8,6 @@ const Allreports = () => {
   const [withdrawTransactions, setWithdrawTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Local storage se user ID lena
   const userId = JSON.parse(localStorage.getItem("user"))?.id;
 
   useEffect(() => {
@@ -16,20 +15,26 @@ const Allreports = () => {
 
     const fetchTransactions = async () => {
       try {
-        // 🔹 depdraws API se data lena
         const response = await depdraws.get(`/${userId}`);
 
-        // 🔹 Transactions ko separate karna
-        const depositData = response.data.deposit
-          ? [{ email: response.data.email, amount: response.data.deposit }]
-          : [];
+        const allData = Array.isArray(response.data) ? response.data : [];
 
-        const withdrawData = response.data.withdraw
-          ? [{ email: response.data.email, amount: response.data.withdraw }]
-          : [];
+        const deposits = allData
+          .filter((item) => item.deposit !== undefined)
+          .map((item) => ({
+            email: item.email,
+            amount: item.deposit,
+          }));
 
-        setDepositTransactions(depositData);
-        setWithdrawTransactions(withdrawData);
+        const withdrawals = allData
+          .filter((item) => item.withdraw !== undefined)
+          .map((item) => ({
+            email: item.email,
+            amount: item.withdraw,
+          }));
+
+        setDepositTransactions(deposits);
+        setWithdrawTransactions(withdrawals);
       } catch (error) {
         console.error("Error fetching transactions", error);
       } finally {

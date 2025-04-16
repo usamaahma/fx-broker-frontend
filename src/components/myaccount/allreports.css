@@ -35,16 +35,25 @@
   color: white;
 }
 
+/* List items */
 .ant-list-item {
   border-bottom: 1px solid rgba(255, 215, 0, 0.5) !important;
   padding: 12px;
   transition: background 0.3s ease-in-out;
+  color: white;
 }
 
 .ant-list-item:hover {
   background: rgba(255, 215, 0, 0.1);
 }
 
+/* List title and description override */
+.ant-list-item-meta-title,
+.ant-list-item-meta-description {
+  color: white !important;
+}
+
+/* Tags */
 .ant-tag {
   font-size: 14px;
   font-weight: bold;
