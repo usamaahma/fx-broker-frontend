@@ -2,53 +2,64 @@ import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Card } from "antd";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { account } from "../../../utils/axios";
+import { account, kyc } from "../../../utils/axios"; // Add kyc import
 import "./real.css";
 
 function Real() {
   const [loading, setLoading] = useState(false);
   const [existingEmails, setExistingEmails] = useState([]);
+  const [hasKyc, setHasKyc] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
-    const fetchAccounts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await account.get("/");
+        const user = JSON.parse(localStorage.getItem("user"));
 
-        if (!response || response.status !== 200) {
-          throw new Error("Invalid response from server");
-        }
-
-        // Ensure response.data is an array of objects containing email
-        const emails = response.data.results.map((acc) =>
+        // 1. Fetch existing real accounts
+        const accResponse = await account.get("/");
+        const emails = accResponse.data.map((acc) =>
           acc.email?.trim().toLowerCase()
         );
-        setExistingEmails(emails); // Directly update existingEmails state
+        setExistingEmails(emails);
+
+        const kycResponse = await kyc.get(`/${user.id}`);
+        console.log(kycResponse.data?.status, "dsjh")
+        if (kycResponse?.status === 200 && kycResponse.data?.status === "verified") {
+          setHasKyc(true);
+        }
       } catch (error) {
-        console.error("Error fetching accounts:", error);
-        toast.warning("Request Here, Have email 😉 !", {
-          position: "top-right",
-        });
+        if (error?.response?.status === 404) {
+          setHasKyc(false);
+        } else {
+          console.error("Unexpected error:", error);
+        }
       }
     };
 
-    fetchAccounts(); // Call API when component mounts
+    fetchData();
   }, []);
 
   const onFinish = async (values) => {
-    setLoading(true);
     const enteredEmail = values.email.trim().toLowerCase();
-    console.log("Entered Email:", enteredEmail);
-    console.log("Existing Emails Before Check:", existingEmails);
 
+    // 💥 Stop if KYC is missing
+    if (!hasKyc) {
+      toast.warning("Please submit your KYC before requesting a real account.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    // 💥 Check if email already exists
     if (existingEmails.includes(enteredEmail)) {
       toast.warning("This email is already registered!", {
         position: "top-right",
       });
-      setLoading(false);
       return;
     }
 
+    setLoading(true);
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       const payload = {
@@ -63,9 +74,7 @@ function Real() {
         position: "top-right",
       });
 
-      // Update existing emails list
       setExistingEmails([...existingEmails, enteredEmail]);
-
       form.resetFields();
     } catch (error) {
       toast.error("Failed to submit request. Please try again.", {
@@ -125,10 +134,17 @@ function Real() {
               htmlType="submit"
               loading={loading}
               className="submit-btn"
+              disabled={!hasKyc}
             >
               {loading ? "Submitting..." : "Submit"}
             </Button>
           </Form.Item>
+
+          {!hasKyc && (
+            <p style={{ color: "red", textAlign: "center" }}>
+              ⚠️ Please complete your KYC first to proceed.
+            </p>
+          )}
         </Form>
       </Card>
     </div>
