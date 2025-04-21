@@ -72,7 +72,7 @@ const LoginPage = () => {
 
         <div className="signup-text">
           <Text >
-           <p style={{color:"white"}}>Don't have an account?{" "}</p> 
+           {/* <p style={{color:"white"}}>Don't have an account?{" "}</p>  */}
             <span className="signup-link" onClick={() => navigate("/forget-password")}>
             Forget-Password?
             </span>
