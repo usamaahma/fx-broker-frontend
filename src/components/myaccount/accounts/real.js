@@ -66,6 +66,7 @@ function Real() {
         ...values,
         email: enteredEmail,
         accountType: "real",
+        accCreated:"pending",
         userId: user?.id || null,
       };
 
