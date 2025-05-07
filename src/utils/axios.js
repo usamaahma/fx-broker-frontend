@@ -7,6 +7,9 @@ const baseURL = process.env.REACT_APP_API_BASE_URL; // Make sure your .env file 
 const register = axios.create({
   baseURL: `${baseURL}/auth`, // Ensure this is the correct endpoint for login
 });
+const users = axios.create({
+  baseURL: `${baseURL}/users`, // Ensure this is the correct endpoint for login
+});
 const login = axios.create({
   baseURL: `${baseURL}/auth`, // Ensure this is the correct endpoint for login
 });
@@ -59,6 +62,8 @@ helpdesk.interceptors.request.use(requestInterceptor, errorInterceptor);
 depdraws.interceptors.request.use(requestInterceptor, errorInterceptor);
 forgetPassword.interceptors.request.use(requestInterceptor, errorInterceptor);
 resetpassword.interceptors.request.use(requestInterceptor, errorInterceptor);
+users.interceptors.request.use(requestInterceptor, errorInterceptor);
+
 export {
   resetpassword,
   register,
@@ -71,4 +76,5 @@ export {
   helpdesk,
   depdraws,
   forgetPassword,
+  users,
 };
