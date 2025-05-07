@@ -14,6 +14,7 @@ import Withdraw from "./withdraw";
 import Helpdesk from "./helpdesk";
 import Allreports from "./allreports";
 import Accoundetail from "./accountdetail";
+import Editaccount from "./editaccount";
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -70,6 +71,13 @@ const MyAccount = () => {
             <Accoundetail />
           </div>
         );
+        case "editaccount":
+          return (
+            <div>
+              <Editaccount />
+            </div>
+          );
+        
       default:
         return <Dashboard />;
     }
@@ -148,6 +156,9 @@ const MyAccount = () => {
 
               <Nav.Link onClick={() => handleMenuClick("helpdesk")}>
                 Helpdesk
+              </Nav.Link>
+              <Nav.Link onClick={() => handleMenuClick("editaccount")}>
+                Edit Account
               </Nav.Link>
             </Nav>
 
