@@ -118,7 +118,7 @@ const Withdraw = () => {
                         label="Bank Account Name"
                         name="accountName"
                         rules={[{ required: true, message: 'Please enter your Account Name' }]} >
-                        <Input placeholder="Enter Account Name" />
+                        <Input placeholder="Enter Bank Name" />
                     </Form.Item>
 
                     <Form.Item
